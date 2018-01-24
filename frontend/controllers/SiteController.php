@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,6 +13,10 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+
+use backend\models\Tests;
+use backend\models\Qestion;
+use backend\models\QestionOption;
 
 /**
  * Site controller
@@ -72,7 +77,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $tests = Tests::find()->all();
+        return $this->render('index',[
+            'tests' => $tests,
+        ]);
     }
 
     /**
@@ -210,4 +218,25 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionTest(){
+        $test = Qestion::find()->where(['tests_id' => Yii::$app->request->get()['id']])->all();
+//        $options = QestionOption::find()->where($test->id)->andWhere()->all();
+        $options =[];
+        foreach ($test as $tes){
+            array_push($options , QestionOption::find()->where(['qestion_id' => $tes->id])->all());
+        }
+
+        return $this->render('test',[
+            'test' => $test,
+            'options' => $options
+        ]);
+    }
+
+//    public function actionOption(){
+//
+//        return $this->render('option',[
+//
+//        ]);
+//    }
 }

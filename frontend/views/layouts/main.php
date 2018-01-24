@@ -36,7 +36,9 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Доступні тести', 'url' => ['/site/index']],
+        ['label' => 'Питання', 'url' => ['/site/test']],
+        ['label' => 'Варыант выдповіді', 'url' => ['/site/option']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
