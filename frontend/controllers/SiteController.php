@@ -231,9 +231,29 @@ class SiteController extends Controller
             'test' => $test,
             'options' => $options
         ]);
+    }
 
+    public function actionRezult(){
+        if (Yii::$app->request->post()){
+            $rezult =  Yii::$app->request->post();
+//            var_dump( $rezult);
+            $test = QestionOption::find()->where(['correct_option' => true])->andWhere(['qestion_id' => 1])->all();
 
+//            foreach ($rezult as $key => $rez){
+//                $test = QestionOption::find()->where(['qestion_id' => $key])->andWhere(['correct_option' => true])->all();
+////                var_dump( $test  . '</br>');
+//            }
 
+//            for ($i = 2; $i < count($rezult); $i+2 ){
+//                echo $rezult[$i];
+//            }
+
+        }
+
+        return $this->render('rezult',[
+            'rezult' => $rezult,
+            'test' => $test
+        ]);
     }
 
 //    public function actionOption(){

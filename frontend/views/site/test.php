@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //        ?>
 <!--    </pre>-->
     <div class="bs-example">
+        <?= Html::beginForm(['site/rezult', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -25,11 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th>питання</th>
                 <th>варіанти відповіді</th>
             </tr>
-
+            <?= Html::hiddenInput('user_id', Yii::$app->user->id); ?>
             <?php
+
             foreach ($test as $qestion) {
                 ?>
                 <tr>
+                    <?=  Html::hiddenInput($qestion->id, $qestion->id); ?>
+<!--                    --><?//= Html::textInput($qestion->id ) ?><!--;-->
                     <td><?= $qestion->id ?></td>
                     <td><?= $qestion->text_qestion ?></td>
                     <td>
@@ -37,30 +41,33 @@ $this->params['breadcrumbs'][] = $this->title;
                         foreach ($options as $option){
                             foreach ($option as $optio){
                                 if ($qestion->id == $optio->qestion_id ){
-                                    echo  $optio->option_text.'</br>' ;
+                                    ?>
+                                    <?= Html::checkbox($optio->option_text, false, ['label' => $optio->option_text]);?>.<br>
+                        <?php
                                 }
                             }
                          }
                         ?>
                        </td>
                 </tr>
-
                 <?php
             }
             ?>
             </tbody>
         </table>
-    </div>
-
-    <?= Html::beginForm(['order/update', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
-
-        <?= Html::radio('agree', true, ['label' => 'Я согласен']);?>
-        <?= Html::radio('ewr', true, ['label' => 'Я согласен']);?>
-        <?= Html::radio('dsf', true, ['label' => 'Я согласен']);?>
 
         <?= Html::submitButton('Отправить', ['class' => 'submit']) ?>
+        <?= Html::endForm() ?>
+    </div>
 
-    <?= Html::endForm() ?>
+
+
+
+
+
+
+
+
 
 
     <!--    <code>--><?//= __FILE__ ?><!--</code>-->
