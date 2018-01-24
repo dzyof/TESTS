@@ -3,6 +3,8 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
 $this->title = 'variantu';
 $this->params['breadcrumbs'][] = $this->title;
@@ -37,7 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </tbody>
         </table>
+
+
     </div>
 
-    <code><?= __FILE__ ?></code>
+<!--    <code>--><?//= __FILE__ ?><!--</code>-->
 </div>

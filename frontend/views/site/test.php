@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'test';
 $this->params['breadcrumbs'][] = $this->title;
@@ -10,11 +11,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <pre>
-        <?php
-              var_dump($test);
-        ?>
-    </pre>
+<!--    <pre>-->
+<!--        --><?php
+//              var_dump($test);
+//        ?>
+<!--    </pre>-->
     <div class="bs-example">
         <table class="table table-striped">
             <thead>
@@ -50,5 +51,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </table>
     </div>
 
-    <code><?= __FILE__ ?></code>
+<!--    <code>--><?//= __FILE__ ?><!--</code>-->
 </div>

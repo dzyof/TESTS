@@ -231,6 +231,9 @@ class SiteController extends Controller
             'test' => $test,
             'options' => $options
         ]);
+
+
+
     }
 
 //    public function actionOption(){

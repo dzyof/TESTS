@@ -37,10 +37,10 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Доступні тести', 'url' => ['/site/index']],
-        ['label' => 'Питання', 'url' => ['/site/test']],
-        ['label' => 'Варыант выдповіді', 'url' => ['/site/option']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+//        ['label' => 'Питання', 'url' => ['/site/test']],
+//        ['label' => 'Варыант выдповіді', 'url' => ['/site/option']],
+//        ['label' => 'About', 'url' => ['/site/about']],
+//        ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
