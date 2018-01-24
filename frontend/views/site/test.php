@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -51,5 +52,16 @@ $this->params['breadcrumbs'][] = $this->title;
         </table>
     </div>
 
-<!--    <code>--><?//= __FILE__ ?><!--</code>-->
+    <?= Html::beginForm(['order/update', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
+
+        <?= Html::radio('agree', true, ['label' => 'Я согласен']);?>
+        <?= Html::radio('ewr', true, ['label' => 'Я согласен']);?>
+        <?= Html::radio('dsf', true, ['label' => 'Я согласен']);?>
+
+        <?= Html::submitButton('Отправить', ['class' => 'submit']) ?>
+
+    <?= Html::endForm() ?>
+
+
+    <!--    <code>--><?//= __FILE__ ?><!--</code>-->
 </div>

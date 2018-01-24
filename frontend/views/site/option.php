@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
             }
             ?>
-
             </tbody>
         </table>
 
