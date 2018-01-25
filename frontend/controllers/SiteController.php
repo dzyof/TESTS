@@ -236,25 +236,68 @@ class SiteController extends Controller
     public function actionRezult(){
         if (Yii::$app->request->post()){
             $rezult =  Yii::$app->request->post();
+//            echo  '</br></br></br></br>';
+//            print_r(serialize($rezult));
 //            var_dump( $rezult);
-            $test = QestionOption::find()->where(['correct_option' => true])->andWhere(['qestion_id' => 1])->all();
+            $test = QestionOption::find()->where(['correct_option' => true])->andWhere(['qestion_id' => 3])->all();
 
 //            foreach ($rezult as $key => $rez){
-//                $test = QestionOption::find()->where(['qestion_id' => $key])->andWhere(['correct_option' => true])->all();
+//                echo     '</br>' .  $key,"-". $rez.'---';
+//                $test = QestionOption::find()->where(['correct_option' => true])->andWhere(['qestion_id' => $key ])->all();
+//
+////                var_dump($test[0]->option_text).  '</br>'  ;
+//                echo     '</br>';
+//                    var_dump( $key , $test[0]->option_text);
+//
+//
+//            }
+//            foreach ($rezult as $key => $rez){
+//                list( $qetionid ,$answer ) = explode("/", $rez);
+//                echo     '</br>' .  $key,"-". $rez.'---';
+//                var_dump($qetionid,$answer );
+////                $test = QestionOption::find()->where(['qestion_id' => $key])->andWhere(['correct_option' => true])->all();
 ////                var_dump( $test  . '</br>');
 //            }
-
-//            for ($i = 2; $i < count($rezult); $i+2 ){
-//                echo $rezult[$i];
-//            }
+////
+           echo  '</br></br></br></br>';
+            $i = 0;
+            $conttest = 0;
+            $right = 0;
+            $unright =0;
+            foreach ($rezult as $key => $rez){
+                if($i >=2 ){
+                    //                echo        $key,"-". $rez.'</br>';
+                    $qestAbsw = explode("/", $key);
+//                    echo $qestAbsw[0]."__>";
+//                    echo $qestAbsw[1]."</br>";
+                    if($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id'){
+                        $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => true])->all();
+                        if($test[0]->option_text == $qestAbsw[1]){
+                            $right++;
+//                            echo "правильно";
+                        }
+                        else{
+                            $unright++;
+//                            echo "НЕправильно";
+                        }
+                    }
+                    $conttest++;
+                }
+                $i++;
+        }
 
         }
 
         return $this->render('rezult',[
-            'rezult' => $rezult,
-            'test' => $test
+//            'rezult' => $rezult,
+//            'test' => $test
+            'right' => $right,
+            'unright' => $unright,
+           'conttest' => $conttest
         ]);
     }
+
+
 
 //    public function actionOption(){
 //

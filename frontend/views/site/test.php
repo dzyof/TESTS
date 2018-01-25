@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             foreach ($test as $qestion) {
                 ?>
                 <tr>
-                    <?=  Html::hiddenInput($qestion->id, $qestion->id); ?>
+<!--                    --><?//=  Html::hiddenInput($qestion->id, $qestion->id); ?>
 <!--                    --><?//= Html::textInput($qestion->id ) ?><!--;-->
                     <td><?= $qestion->id ?></td>
                     <td><?= $qestion->text_qestion ?></td>
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             foreach ($option as $optio){
                                 if ($qestion->id == $optio->qestion_id ){
                                     ?>
-                                    <?= Html::checkbox($optio->option_text, false, ['label' => $optio->option_text]);?>.<br>
+                                        <?= Html::checkbox($qestion->id."/".$optio->option_text, false, ['label' =>$optio->option_text]);?>.<br>
                         <?php
                                 }
                             }
@@ -55,7 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             </tbody>
         </table>
-
         <?= Html::submitButton('Отправить', ['class' => 'submit']) ?>
         <?= Html::endForm() ?>
     </div>
