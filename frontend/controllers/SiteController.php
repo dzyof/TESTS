@@ -229,44 +229,21 @@ class SiteController extends Controller
 
         return $this->render('test',[
             'test' => $test,
-            'options' => $options
+            'options' => $options,
         ]);
     }
 
     public function actionRezult(){
         if (Yii::$app->request->post()){
             $rezult =  Yii::$app->request->post();
-//            echo  '</br></br></br></br>';
-//            print_r(serialize($rezult));
-//            var_dump( $rezult);
-            $test = QestionOption::find()->where(['correct_option' => true])->andWhere(['qestion_id' => 3])->all();
-
-//            foreach ($rezult as $key => $rez){
-//                echo     '</br>' .  $key,"-". $rez.'---';
-//                $test = QestionOption::find()->where(['correct_option' => true])->andWhere(['qestion_id' => $key ])->all();
-//
-////                var_dump($test[0]->option_text).  '</br>'  ;
-//                echo     '</br>';
-//                    var_dump( $key , $test[0]->option_text);
-//
-//
-//            }
-//            foreach ($rezult as $key => $rez){
-//                list( $qetionid ,$answer ) = explode("/", $rez);
-//                echo     '</br>' .  $key,"-". $rez.'---';
-//                var_dump($qetionid,$answer );
-////                $test = QestionOption::find()->where(['qestion_id' => $key])->andWhere(['correct_option' => true])->all();
-////                var_dump( $test  . '</br>');
-//            }
-////
-           echo  '</br></br></br></br>';
             $i = 0;
             $conttest = 0;
+            $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']] )->count() ;
+            $userId = $rezult['user_id'];
             $right = 0;
             $unright =0;
             foreach ($rezult as $key => $rez){
-                if($i >=2 ){
-                    //                echo        $key,"-". $rez.'</br>';
+                if($i >=3 ){
                     $qestAbsw = explode("/", $key);
 //                    echo $qestAbsw[0]."__>";
 //                    echo $qestAbsw[1]."</br>";
@@ -285,15 +262,17 @@ class SiteController extends Controller
                 }
                 $i++;
         }
-
         }
-
+        if($mustBeConttest > $conttest ){
+            $unright +=  $mustBeConttest - $conttest;
+        }
         return $this->render('rezult',[
 //            'rezult' => $rezult,
-//            'test' => $test
+            'userId' => $userId,
             'right' => $right,
             'unright' => $unright,
-           'conttest' => $conttest
+            'conttest' => $conttest,
+            'mustBeConttest' => $mustBeConttest
         ]);
     }
 

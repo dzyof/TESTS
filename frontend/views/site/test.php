@@ -21,19 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::beginForm(['site/rezult', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
         <table class="table table-striped">
             <thead>
+
             <tr>
                 <th>#</th>
                 <th>питання</th>
                 <th>варіанти відповіді</th>
             </tr>
             <?= Html::hiddenInput('user_id', Yii::$app->user->id); ?>
+            <?= Html::hiddenInput('test_id', Yii::$app->request->get()['id']); ?>
             <?php
 
             foreach ($test as $qestion) {
                 ?>
                 <tr>
-<!--                    --><?//=  Html::hiddenInput($qestion->id, $qestion->id); ?>
-<!--                    --><?//= Html::textInput($qestion->id ) ?><!--;-->
                     <td><?= $qestion->id ?></td>
                     <td><?= $qestion->text_qestion ?></td>
                     <td>
