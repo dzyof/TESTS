@@ -226,10 +226,13 @@ class SiteController extends Controller
         foreach ($test as $tes){
             array_push($options , QestionOption::find()->where(['qestion_id' => $tes->id])->all());
         }
+        $timePassing = Tests::find()->where(['id' => Yii::$app->request->get()['id']])->all();
+        $timePass = $timePassing[0]->time_passing;
 
         return $this->render('test',[
             'test' => $test,
             'options' => $options,
+            'timePass' => $timePass
         ]);
     }
 
@@ -266,13 +269,16 @@ class SiteController extends Controller
         if($mustBeConttest > $conttest ){
             $unright +=  $mustBeConttest - $conttest;
         }
+
+
         return $this->render('rezult',[
 //            'rezult' => $rezult,
             'userId' => $userId,
             'right' => $right,
             'unright' => $unright,
             'conttest' => $conttest,
-            'mustBeConttest' => $mustBeConttest
+            'mustBeConttest' => $mustBeConttest,
+            'timePassing' => $timePassing
         ]);
     }
 
