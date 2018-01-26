@@ -236,52 +236,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionRezult(){
-        if (Yii::$app->request->post()){
-            $rezult =  Yii::$app->request->post();
-            $i = 0;
-            $conttest = 0;
-            $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']] )->count() ;
-            $userId = $rezult['user_id'];
-            $right = 0;
-            $unright =0;
-            foreach ($rezult as $key => $rez){
-                if($i >=3 ){
-                    $qestAbsw = explode("/", $key);
-//                    echo $qestAbsw[0]."__>";
-//                    echo $qestAbsw[1]."</br>";
-                    if($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id'){
-                        $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => true])->all();
-                        if($test[0]->option_text == $qestAbsw[1]){
-                            $right++;
-//                            echo "правильно";
-                        }
-                        else{
-                            $unright++;
-//                            echo "НЕправильно";
-                        }
-                    }
-                    $conttest++;
-                }
-                $i++;
-        }
-        }
-        if($mustBeConttest > $conttest ){
-            $unright +=  $mustBeConttest - $conttest;
-        }
-
-
-        return $this->render('rezult',[
-//            'rezult' => $rezult,
-            'userId' => $userId,
-            'right' => $right,
-            'unright' => $unright,
-            'conttest' => $conttest,
-            'mustBeConttest' => $mustBeConttest,
-            'timePassing' => $timePassing
-        ]);
-    }
-
 
 
 //    public function actionOption(){

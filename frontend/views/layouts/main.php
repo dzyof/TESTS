@@ -37,6 +37,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Доступні тести', 'url' => ['/site/index']],
+        ['label' => 'Таблятя пройдених тесітв', 'url' => ['/rezult/index']],
 //        ['label' => 'Питання', 'url' => ['/site/test']],
 //        ['label' => 'Варыант выдповіді', 'url' => ['/site/option']],
 //        ['label' => 'About', 'url' => ['/site/about']],

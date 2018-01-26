@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //        ?>
 <!--    </pre>-->
     <div class="bs-example">
-        <?= Html::beginForm(['site/rezult', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
+        <?= Html::beginForm(['rezult/rezult', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
         <table class="table table-striped">
             <thead>
 
@@ -60,9 +60,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 <!--    <div class="seconds">16</div>-->
     Залишилося  часу <span class="seconds"> <?= $timePass * 60 ?></span>с.
-
-
-
     <script>
         window.onload = function() {
 
@@ -78,8 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             }, 1000);
         }
-
-
     </script>
 
 
