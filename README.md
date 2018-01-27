@@ -10,6 +10,12 @@
 2. go to the folder comon/config and write in line
   'dsn' => 'mysql:host=localhost;dbname=YOUR DB',
 3. Run next comand.
-        yii migrate - creates a base
-        yii fill/user - creates a user and admin 
-        yii fill/table - creates several tests
+                            <tr>
+                                <td>yii migrate - creates a base</td>
+                                <td> yii fill/user - creates a user and admin </td>
+                                <td>    yii fill/table - creates several tests</td>
+                               
+                            </tr>
+        
+        
+      
