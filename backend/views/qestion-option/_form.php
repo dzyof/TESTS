@@ -1,5 +1,7 @@
 <?php
 
+use backend\models\Qestion;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,11 +14,22 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'qestion_id')->textInput() ?>
+<!--    --><?//= $form->field($model, 'qestion_id')->textInput() ?>
+
+    <?= $form->field($model, 'qestion_id')->dropDownList(
+        ArrayHelper::map(Qestion::find()->all(),'id','text_qestion' ),
+        ['prompt' =>'Виберіть до якого питання' ]
+    ) ?>
 
     <?= $form->field($model, 'option_text')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'correct_option')->textInput() ?>
+
+
+    <?= $form->field($model, 'correct_option')->dropDownList(
+        [ 0 => 'Не Вірно',
+          1 => 'Вірно' ]
+    ) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
