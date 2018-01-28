@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    <pre>-->
 <!--        --><?php
 //              var_dump($test);
-//        ?>
+//?>
 <!--    </pre>-->
     <div class="bs-example">
         <?= Html::beginForm(['rezult/rezult', 'id' => $id], 'post', ['enctype' => 'multipart/form-data']) ?>
@@ -38,16 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $qestion->text_qestion ?></td>
                     <td>
                         <?php
-                        foreach ($options as $option){
-                            foreach ($option as $optio){
-                                if ($qestion->id == $optio->qestion_id ){
+                        foreach ($options as $option) {
+                            foreach ($option as $optio) {
+                                if ($qestion->id == $optio->qestion_id) {
                                     ?>
-                                        <?= Html::checkbox($qestion->id."/".$optio->option_text, false, ['label' =>$optio->option_text]);?>.<br>
+                                        <?= Html::checkbox($qestion->id."/".$optio->option_text, false, ['label' =>$optio->option_text]); ?>.<br>
                         <?php
                                 }
                             }
-                         }
-                        ?>
+                        } ?>
                        </td>
                 </tr>
                 <?php
@@ -88,5 +87,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-    <!--    <code>--><?//= __FILE__ ?><!--</code>-->
+    <!--    <code>--><?//= __FILE__?><!--</code>-->
 </div>

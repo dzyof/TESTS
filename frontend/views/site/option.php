@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--    <pre>-->
     <!--        --><?php
     //              var_dump($test);
-    //        ?>
+    //?>
     <!--    </pre>-->
     <div class="bs-example">
         <table class="table table-striped">
@@ -42,5 +42,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 
-<!--    <code>--><?//= __FILE__ ?><!--</code>-->
+<!--    <code>--><?//= __FILE__?><!--</code>-->
 </div>

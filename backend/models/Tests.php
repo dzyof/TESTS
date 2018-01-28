@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use frontend\models\Rezults;
 use Yii;
 
 /**
@@ -61,5 +62,10 @@ class Tests extends \yii\db\ActiveRecord
     public function getQestions()
     {
         return $this->hasMany(Qestion::className(), ['tests_id' => 'id']);
+    }
+
+    public function getRezults()
+    {
+        return $this->hasMany(Rezults::className(), ['test_id' => 'id']);
     }
 }

@@ -46,7 +46,7 @@ class QestionOption extends \yii\db\ActiveRecord
             'id' => 'ID',
             'qestion_id' => 'Qestion ID',
             'option_text' => 'Варіант відповіді',
-            'correct_option' => 'Чи це є правильний варіант 1 або 0',
+            'correct_option' => 'Чи це є правильний варіант',
         ];
     }
 

@@ -9,7 +9,6 @@ use frontend\models\Rezults;
 use Yii;
 use yii\data\ActiveDataProvider;
 
-
 class RezultController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -23,11 +22,11 @@ class RezultController extends \yii\web\Controller
 
 
 
-    public function actionRezult(){
-
+    public function actionRezult()
+    {
         $model = new Rezults();
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $rezult =  Yii::$app->request->post();
             $userId = $rezult['user_id'];
             $trufalse = $model->countRez($rezult);
@@ -44,15 +43,10 @@ class RezultController extends \yii\web\Controller
         $rezultt->save();
 
 
-        return $this->render('rezult',[
+        return $this->render('rezult', [
             'userId' => $userId,
             'trufalse'=>$trufalse,
             'mustBeConttest' => $mustBeConttest,
         ]);
     }
-
-
-
-
-
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use backend\models\Tests;
+
 /* @var $this yii\web\View */
 /* @var $model backend\models\Qestion */
 /* @var $form yii\widgets\ActiveForm */
@@ -15,7 +16,7 @@ use backend\models\Tests;
 
 
     <?= $form->field($model, 'tests_id')->dropDownList(
-           ArrayHelper::map(Tests::find()->all(),'id','name_tests' ),
+           ArrayHelper::map(Tests::find()->all(), 'id', 'name_tests'),
            ['prompt' =>'Select Tests' ]
     ) ?>
 

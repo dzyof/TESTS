@@ -1,7 +1,6 @@
 <?php
 namespace frontend\controllers;
 
-
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -78,8 +77,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $tests = Tests::find()->all();
-        return $this->render('index',[
-            'tests' => $tests,
+
+        return $this->render('index', [            'tests' => $tests,
+
         ]);
     }
 
@@ -219,17 +219,18 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTest(){
+    public function actionTest()
+    {
         $test = Qestion::find()->where(['tests_id' => Yii::$app->request->get()['id']])->all();
 //        $options = QestionOption::find()->where($test->id)->andWhere()->all();
         $options =[];
-        foreach ($test as $tes){
-            array_push($options , QestionOption::find()->where(['qestion_id' => $tes->id])->all());
+        foreach ($test as $tes) {
+            array_push($options, QestionOption::find()->where(['qestion_id' => $tes->id])->all());
         }
         $timePassing = Tests::find()->where(['id' => Yii::$app->request->get()['id']])->all();
         $timePass = $timePassing[0]->time_passing;
 
-        return $this->render('test',[
+        return $this->render('test', [
             'test' => $test,
             'options' => $options,
             'timePass' => $timePass

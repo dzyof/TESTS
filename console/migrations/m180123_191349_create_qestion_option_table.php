@@ -24,10 +24,9 @@ class m180123_191349_create_qestion_option_table extends Migration
             'qestion_id' => $this->integer()->notNull(),
             'option_text' =>  $this->string()->notNull(),
             'correct_option' => $this->boolean()
-        ],$tableOptions);
+        ], $tableOptions);
 
-        $this->addForeignKey('qestion_options', 'qestion_option','qestion_id','qestion','id');
-
+        $this->addForeignKey('qestion_options', 'qestion_option', 'qestion_id', 'qestion', 'id');
     }
 
     /**
@@ -41,8 +40,5 @@ class m180123_191349_create_qestion_option_table extends Migration
         );
 
         $this->dropTable('{{%qestion_option}}');
-
-
-
     }
 }

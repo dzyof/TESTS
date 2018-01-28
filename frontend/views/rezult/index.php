@@ -14,7 +14,7 @@ $this->title = 'Tests system'
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
+                <th>ІD тесту що проходився</th>
                 <th>ід користувача який проходив тест</th>
                 <th>Дата проходження</th>
                 <th>Кількість правильних відповідей</th>
@@ -25,11 +25,13 @@ $this->title = 'Tests system'
                         foreach ($model as $test) {
                             ?>
                             <tr>
-                                <td><?= $test->id ?></td>
-                                <td>  <?= $test->user_id ?></td>
-                                <td>  <?= $test->data_pass ?></td>
+                                <td> <?= $test->id ?></td>
+                                <td> <?= $test->user_id ?></td>
+                                <td> <?= $test->data_pass ?></td>
                                 <td><?= $test->correct_unswer ?> </td>
                                 <td><?= $test->wrong_unswer ?></td>
+
+
                             </tr>
                             <?php
                         }
@@ -38,5 +40,6 @@ $this->title = 'Tests system'
             </tbody>
         </table>
     </div>
+
 
 </div>

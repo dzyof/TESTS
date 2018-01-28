@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use frontend\models\Rezults;
 use Yii;
 
 /**

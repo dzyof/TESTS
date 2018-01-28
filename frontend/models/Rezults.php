@@ -76,37 +76,33 @@ class Rezults extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function countRez($rezult){
-
-        $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']] )->count() ;
+    public function countRez($rezult)
+    {
+        $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']])->count() ;
 
         $right = 0;
         $unright =0;
         $conttest = 0;
         $i = 0;
         $arr =[];
-        foreach ($rezult as $key => $rez){
-            if($i >=3 ){
+        foreach ($rezult as $key => $rez) {
+            if ($i >=3) {
                 $qestAbsw = explode("/", $key);
 //                    echo $qestAbsw[0]."__>";
-//                    echo $qestAbsw[1]."</br>";
-                if($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id'){
-                    $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => true])->all();
-                    if($test[0]->option_text == $qestAbsw[1]){
-                        $right++;
-//                            echo "правильно";
-                    }
-                    else{
-                        $unright++;
-//                            echo "НЕправильно";
-                    }
+//                    echo $qestAbsw[1]."</br>";                if ($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id') {
+                $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => true])->all();
+                if ($test[0]->option_text == $qestAbsw[1]) {
+                    $right++;
+//                            echo "правильно";                    } else {
+                    $unright++;
+//                            echo "НЕправильно";                    }
                 }
                 $conttest++;
             }
             $i++;
         }
 
-        if($mustBeConttest > $conttest ){
+        if ($mustBeConttest > $conttest) {
             $unright +=  $mustBeConttest - $conttest;
         }
 
@@ -114,8 +110,4 @@ class Rezults extends \yii\db\ActiveRecord
 
         return $arr;
     }
-
-
-
-
 }

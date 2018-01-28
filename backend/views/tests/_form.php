@@ -16,11 +16,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'time_passing')->textInput() ?>
 
-<!--    --><?//= $form->field($model, 'number_passing')->textInput() ?>
+<!--    --><?//= $form->field($model, 'number_passing')->textInput()?>
 
-<!--    --><?//= $form->field($model, 'avarage_score')->textInput() ?>
+<!--    --><?//= $form->field($model, 'avarage_score')->textInput()?>
 
-<!--    --><?//= $form->field($model, 'created_at')->textInput() ?>
+<!--    --><?//= $form->field($model, 'created_at')->textInput()?>
 
     <div class="form-group">
         <?= Html::submitButton('Зберегти', ['class' => 'btn btn-success']) ?>

@@ -12,7 +12,6 @@ class m180123_100839_create_tests_table extends Migration
      */
     public function up()
     {
-
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci

@@ -25,11 +25,10 @@ class m180126_094701_rezults_table extends Migration
             'test_id' => $this->integer()->notNull(),
             'correct_unswer' => $this->integer()->notNull(),
             'wrong_unswer' => $this->integer()->notNull(),
-        ],$tableOptions);
+        ], $tableOptions);
 
-        $this->addForeignKey('rez_user', 'rezults','user_id','user','id');
-        $this->addForeignKey('rez_test', 'rezults','test_id','tests','id');
-
+        $this->addForeignKey('rez_user', 'rezults', 'user_id', 'user', 'id');
+        $this->addForeignKey('rez_test', 'rezults', 'test_id', 'tests', 'id');
     }
 
     /**
@@ -47,10 +46,5 @@ class m180126_094701_rezults_table extends Migration
         );
 
         $this->dropTable('{{%rezults}}');
-
-
-
     }
-
-
 }

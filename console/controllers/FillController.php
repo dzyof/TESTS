@@ -1,18 +1,17 @@
 <?php
 
 namespace console\controllers;
+
 use common\models\User;
 use yii\console\ExitCode;
 use backend\models\Tests;
 use backend\models\Qestion;
 use backend\models\QestionOption;
 
-
 class FillController extends \yii\console\Controller
 {
     public function actionUser()
     {
-
         echo 'ZApovnutu usera i admina' . "\n";
 
         $user = new User();
@@ -34,7 +33,6 @@ class FillController extends \yii\console\Controller
 
     public function actionTable()
     {
-
         $test = new Tests();
         $test->id = 2;
         $test->name_tests = 'Філософія';
@@ -68,5 +66,4 @@ class FillController extends \yii\console\Controller
         echo 'zapovnutu tablicy dannimi' . "\n";
         return ExitCode::OK;
     }
-
 }

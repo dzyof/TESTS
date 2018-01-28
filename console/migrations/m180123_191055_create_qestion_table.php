@@ -20,9 +20,7 @@ class m180123_191055_create_qestion_table extends Migration
             'tests_id'=> $this->integer()->notNull(),
             'text_qestion' => $this->string()->notNull(),
         ], $tableOptions);
-        $this->addForeignKey('qestion_tests', 'qestion','tests_id','tests','id');
-
-
+        $this->addForeignKey('qestion_tests', 'qestion', 'tests_id', 'tests', 'id');
     }
 
     /**
@@ -30,7 +28,6 @@ class m180123_191055_create_qestion_table extends Migration
      */
     public function down()
     {
-
         $this->dropForeignKey(
             'qestion_tests',
             'qestion'
