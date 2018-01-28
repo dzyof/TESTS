@@ -58,11 +58,5 @@ class Qestion extends \yii\db\ActiveRecord
         return $this->hasOne(Tests::className(), ['id' => 'tests_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getQestionOptions()
-    {
-        return $this->hasMany(QestionOption::className(), ['qestion_id' => 'id']);
-    }
+
 }

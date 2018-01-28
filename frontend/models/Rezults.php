@@ -78,8 +78,7 @@ class Rezults extends \yii\db\ActiveRecord
 
     public function countRez($rezult)
     {
-        $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']])->count() ;
-
+        $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']])->count();
         $right = 0;
         $unright =0;
         $conttest = 0;
@@ -88,26 +87,24 @@ class Rezults extends \yii\db\ActiveRecord
         foreach ($rezult as $key => $rez) {
             if ($i >=3) {
                 $qestAbsw = explode("/", $key);
+                var_dump($qestAbsw);
 //                    echo $qestAbsw[0]."__>";
-//                    echo $qestAbsw[1]."</br>";                if ($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id') {
-                $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => true])->all();
+//                    echo $qestAbsw[1]."</br>";
+//                if ($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id') {
+                $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => 1])->all();
                 if ($test[0]->option_text == $qestAbsw[1]) {
                     $right++;
-//                            echo "правильно";                    } else {
+                } else {
                     $unright++;
-//                            echo "НЕправильно";                    }
                 }
                 $conttest++;
             }
             $i++;
         }
-
         if ($mustBeConttest > $conttest) {
             $unright +=  $mustBeConttest - $conttest;
         }
-
         array_push($arr, $right, $unright, $mustBeConttest);
-
         return $arr;
     }
 }
