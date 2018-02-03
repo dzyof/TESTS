@@ -8,22 +8,19 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
-use backend\models\MyModel as Model;
-use yii\base\Controller;
-use backend\models\Tests as Person;
-use backend\models\Qestion as House;
-use backend\models\QestionOption as Room;
+use backend\models\MyModel;
+use yii\console\Controller;
 
-use backend\models\TestsSearch as PersonQuery;
+use backend\models\House;
+use app\models\PersonSearch as PersonQuery;
+use backend\models\Person;
+use backend\models\Room;
 
-//use backend\models\House;
-//use backend\models\Person;
-//use backend\models\Room;
 
 /**
  * DynamicformDemo3Controller implements the CRUD actions for Person model.
  */
-class TestsController extends Controller
+class DynaController extends Controller
 {
     /**
      * Lists all Person models.
@@ -45,12 +42,10 @@ class TestsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView()
+    public function actionView($id)
     {
-
-        $id = Yii::$app->request->get('id');
         $model = $this->findModel($id);
-        $houses = $model->qestions;
+        $houses = $model->houses;
 
         return $this->render('view', [
             'model' => $model,
@@ -78,21 +73,12 @@ class TestsController extends Controller
             $valid = $modelPerson->validate();
             $valid = Model::validateMultiple($modelsHouse) && $valid;
 
-
-
-
-            if (isset($_POST['QestionOption'][0][0])) {
-                foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
-
-
+            if (isset($_POST['Room'][0][0])) {
+                foreach ($_POST['Room'] as $indexHouse => $rooms) {
                     foreach ($rooms as $indexRoom => $room) {
-                        $data['QestionOption'] = $room;
-
-
-
+                        $data['Room'] = $room;
                         $modelRoom = new Room;
                         $modelRoom->load($data);
-
                         $modelsRoom[$indexHouse][$indexRoom] = $modelRoom;
                         $valid = $modelRoom->validate();
                     }
@@ -109,7 +95,7 @@ class TestsController extends Controller
                                 break;
                             }
 
-                            $modelHouse->tests_id = $modelPerson->id;
+                            $modelHouse->person_id = $modelPerson->id;
 
                             if (!($flag = $modelHouse->save(false))) {
                                 break;
@@ -117,7 +103,7 @@ class TestsController extends Controller
 
                             if (isset($modelsRoom[$indexHouse]) && is_array($modelsRoom[$indexHouse])) {
                                 foreach ($modelsRoom[$indexHouse] as $indexRoom => $modelRoom) {
-                                    $modelRoom->qestion_id = $modelHouse->id;
+                                    $modelRoom->house_id = $modelHouse->id;
                                     if (!($flag = $modelRoom->save(false))) {
                                         break;
                                     }
@@ -125,10 +111,10 @@ class TestsController extends Controller
                             }
                         }
                     }
+
                     if ($flag) {
                         $transaction->commit();
-//                        return $this->redirect(['view', 'id' => $modelPerson->id]);
-                        return $this->redirect(['dynamic/view', 'id' => $modelPerson->id]);
+                        return $this->redirect(['view', 'id' => $modelPerson->id]);
                     } else {
                         $transaction->rollBack();
                     }
@@ -151,20 +137,16 @@ class TestsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate()
+    public function actionUpdate($id)
     {
-        $id = Yii::$app->request->get('id');
-
         $modelPerson = $this->findModel($id);
-        $modelsHouse = $modelPerson->qestions;
+        $modelsHouse = $modelPerson->houses;
         $modelsRoom = [];
         $oldRooms = [];
 
         if (!empty($modelsHouse)) {
             foreach ($modelsHouse as $indexHouse => $modelHouse) {
-
-
-                $rooms = $modelHouse->options;
+                $rooms = $modelHouse->rooms;
                 $modelsRoom[$indexHouse] = $rooms;
                 $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
             }
@@ -185,11 +167,11 @@ class TestsController extends Controller
             $valid = Model::validateMultiple($modelsHouse) && $valid;
 
             $roomsIDs = [];
-            if (isset($_POST['QestionOption'][0][0])) {
-                foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
+            if (isset($_POST['Room'][0][0])) {
+                foreach ($_POST['Room'] as $indexHouse => $rooms) {
                     $roomsIDs = ArrayHelper::merge($roomsIDs, array_filter(ArrayHelper::getColumn($rooms, 'id')));
                     foreach ($rooms as $indexRoom => $room) {
-                        $data['QestionOption'] = $room;
+                        $data['Room'] = $room;
                         $modelRoom = (isset($room['id']) && isset($oldRooms[$room['id']])) ? $oldRooms[$room['id']] : new Room;
                         $modelRoom->load($data);
                         $modelsRoom[$indexHouse][$indexRoom] = $modelRoom;
@@ -220,7 +202,7 @@ class TestsController extends Controller
                                 break;
                             }
 
-                            $modelHouse->tests_id = $modelPerson->id;
+                            $modelHouse->person_id = $modelPerson->id;
 
                             if (!($flag = $modelHouse->save(false))) {
                                 break;
@@ -228,7 +210,7 @@ class TestsController extends Controller
 
                             if (isset($modelsRoom[$indexHouse]) && is_array($modelsRoom[$indexHouse])) {
                                 foreach ($modelsRoom[$indexHouse] as $indexRoom => $modelRoom) {
-                                    $modelRoom->qestion_id = $modelHouse->id;
+                                    $modelRoom->house_id = $modelHouse->id;
                                     if (!($flag = $modelRoom->save(false))) {
                                         break;
                                     }
@@ -236,9 +218,9 @@ class TestsController extends Controller
                             }
                         }
                     }
+
                     if ($flag) {
                         $transaction->commit();
-//                        return $this->redirect(['view', 'id' => $modelPerson->id]);
                         return $this->redirect(['view', 'id' => $modelPerson->id]);
                     } else {
                         $transaction->rollBack();
@@ -262,11 +244,10 @@ class TestsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        $id = Yii::$app->request->get('id');
         $model = $this->findModel($id);
-        $name = $model->name_tests;
+        $name = $model->first_name;
 
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', 'Record  <strong>"' . $name . '"</strong> deleted successfully.');

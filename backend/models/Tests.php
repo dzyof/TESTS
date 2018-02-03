@@ -33,7 +33,7 @@ class Tests extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_tests', 'time_passing'], 'required'],
+//            [['name_tests', 'time_passing'], 'required'],
             [['time_passing', 'number_passing', 'avarage_score'], 'integer'],
             [['created_at'], 'number'],
             [['name_tests'], 'string', 'max' => 255],
@@ -63,6 +63,8 @@ class Tests extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Qestion::className(), ['tests_id' => 'id']);
     }
+
+
 
     public function getRezults()
     {

@@ -32,14 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
 //        'modelsRoom' => $modelsRoom,
         'attributes' => [
             'id',
-            'name_tests',
-            'time_passing',
-
-//            'last_name',
-//            'first_name',
+            'last_name',
+            'first_name',
 //            'tests_id',
 //            'text_qestion',
-
         ],
     ]) ?>
 

@@ -12,10 +12,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
     <div class="row">
         <div class="col-sm-6">
-            <?= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($modelPerson, 'first_name')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-6">
-            <?= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($modelPerson, 'last_name')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
@@ -34,7 +34,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
         'model' => $modelsHouse[0],
         'formId' => 'dynamic-form',
         'formFields' => [
-            'text_qestion',
+            'description',
         ],
     ]); ?>
     <table class="table table-bordered table-striped">
@@ -57,7 +57,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]id");
                     }
                     ?>
-                    <?= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label(false)->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($modelHouse, "[{$indexHouse}]description")->label(false)->textInput(['maxlength' => true]) ?>
                 </td>
                 <td>
                     <?= $this->render('_form-rooms', [
