@@ -51,7 +51,7 @@ return [
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'baseUrl' => '/admin',
+//            'baseUrl' => '/admin',
         ],
         'user' => [
             'identityClass' => 'mdm\admin\models\User',

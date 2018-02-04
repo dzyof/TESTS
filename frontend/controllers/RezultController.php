@@ -46,7 +46,7 @@ class RezultController extends \yii\web\Controller
         return $this->render('rezult', [
             'userId' => $userId,
             'trufalse'=>$trufalse,
-            'mustBeConttest' => $mustBeConttest,
+//            'mustBeConttest' => $mustBeConttest,
         ]);
     }
 }

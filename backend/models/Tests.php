@@ -64,8 +64,6 @@ class Tests extends \yii\db\ActiveRecord
         return $this->hasMany(Qestion::className(), ['tests_id' => 'id']);
     }
 
-
-
     public function getRezults()
     {
         return $this->hasMany(Rezults::className(), ['test_id' => 'id']);

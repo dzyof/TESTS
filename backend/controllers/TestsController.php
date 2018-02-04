@@ -4,12 +4,15 @@ namespace backend\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 use backend\models\MyModel as Model;
-use yii\base\Controller;
+
+use yii\web\Controller;
+
 use backend\models\Tests as Person;
 use backend\models\Qestion as House;
 use backend\models\QestionOption as Room;
@@ -45,10 +48,8 @@ class TestsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView()
+    public function actionView($id)
     {
-
-        $id = Yii::$app->request->get('id');
         $model = $this->findModel($id);
         $houses = $model->qestions;
 
@@ -77,22 +78,14 @@ class TestsController extends Controller
             // validate person and houses models
             $valid = $modelPerson->validate();
             $valid = Model::validateMultiple($modelsHouse) && $valid;
-
-
-
-
             if (isset($_POST['QestionOption'][0][0])) {
                 foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
 
 
                     foreach ($rooms as $indexRoom => $room) {
                         $data['QestionOption'] = $room;
-
-
-
                         $modelRoom = new Room;
                         $modelRoom->load($data);
-
                         $modelsRoom[$indexHouse][$indexRoom] = $modelRoom;
                         $valid = $modelRoom->validate();
                     }
@@ -126,10 +119,11 @@ class TestsController extends Controller
                         }
                     }
                     if ($flag) {
-//                        $transaction->commit();
+                        $transaction->commit();
 
-                        return $this->redirect('view');
-//                        return $this->redirect(['view', 'id' => $modelPerson->id]);
+//                        return $this->redirect('view', 'id' => $modelPerson->id]);
+                        return $this->redirect( Url::toRoute(['tests/view', 'id' => $modelPerson->id]));
+//                        return Url::toRoute(['view', 'id' => $modelPerson->id]);
 //
                     } else {
                         $transaction->rollBack();
@@ -153,21 +147,15 @@ class TestsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate()
+    public function actionUpdate($id)
     {
-        $id = Yii::$app->request->get('id');
-
         $modelPerson = $this->findModel($id);
         $modelsHouse = $modelPerson->qestions;
         $modelsRoom = [];
         $oldRooms = [];
 
-
-
         if (!empty($modelsHouse)) {
             foreach ($modelsHouse as $indexHouse => $modelHouse) {
-
-
                 $rooms = $modelHouse->options;
                 $modelsRoom[$indexHouse] = $rooms;
                 $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
@@ -267,16 +255,31 @@ class TestsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        $id = Yii::$app->request->get('id');
+//     i.e : $oModel = ModelName::find()->with('originaltable_name')->
+//      where(['practiceCode' => $your_value])->all();
+//       you will select your records and delete. you will define your relation using with()
         $model = $this->findModel($id);
         $name = $model->name_tests;
+        $qestions = $this->findModelQ($model->id);
 
+        foreach ($qestions as $qestion){
+            $options = $this->findModelO($qestion->id);
+            foreach ($options as $option){
+                $option->delete();
+            }
+            $qestion->delete();
+        }
+
+        // delete profile first to handle foreign key constraint
+//        $user = $this->findModel($id);
+//        $profile = $user->profile;
+//        $profile->delete();
+//        $user->delete();
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', 'Record  <strong>"' . $name . '"</strong> deleted successfully.');
         }
-
         return $this->redirect(['index']);
     }
 
@@ -290,6 +293,24 @@ class TestsController extends Controller
     protected function findModel($id)
     {
         if (($model = Person::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+// пошук питань
+    protected function findModelQ($id)
+    {
+        if (($model = House::findAll([ 'tests_id' =>  $id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    //пошук варіантів відповідей
+    protected function findModelO($id)
+    {
+        if (($model = Room::findAll([ 'qestion_id' =>  $id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
