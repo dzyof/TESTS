@@ -126,9 +126,11 @@ class TestsController extends Controller
                         }
                     }
                     if ($flag) {
-                        $transaction->commit();
+//                        $transaction->commit();
+
+                        return $this->redirect('view');
 //                        return $this->redirect(['view', 'id' => $modelPerson->id]);
-                        return $this->redirect(['dynamic/view', 'id' => $modelPerson->id]);
+//
                     } else {
                         $transaction->rollBack();
                     }
@@ -160,6 +162,8 @@ class TestsController extends Controller
         $modelsRoom = [];
         $oldRooms = [];
 
+
+
         if (!empty($modelsHouse)) {
             foreach ($modelsHouse as $indexHouse => $modelHouse) {
 
@@ -169,6 +173,7 @@ class TestsController extends Controller
                 $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
             }
         }
+
 
         if ($modelPerson->load(Yii::$app->request->post())) {
 
