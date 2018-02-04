@@ -57,27 +57,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::submitButton('Отправить', ['class' => 'submit','id' => 'autoSend']) ?>
         <?= Html::endForm() ?>
     </div>
-<!--    <div class="seconds">16</div>-->
+
     Залишилося  часу <span class="seconds"> <?= $timePass * 60 ?></span>с.
     <script>
-        window.onload = function() {
 
-            var _Seconds = $('.seconds').text(),
-                int;
-            int = setInterval(function() { // запускаем интервал
-                if (_Seconds > 0) {
-                    _Seconds--; // вычитаем 1
-                    $('.seconds').text(_Seconds); // выводим получившееся значение в блок
-                } else {
-                    clearInterval(int); // очищаем интервал, чтобы он не продолжал работу при _Seconds = 0
-                    window.location.href = "/";
-                    // $('#autoSend').click();
-                }
-            }, 1000);
-        }
     </script>
 
 
 
-    <!--    <code>--><?//= __FILE__?><!--</code>-->
+
 </div>
