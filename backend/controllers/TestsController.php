@@ -255,14 +255,6 @@ class TestsController extends Controller
     {
         $model = $this->findModel($id);
         $name = $model->name_tests;
-        $qestions = $this->findModelQ($model->id);
-        foreach ($qestions as $qestion){
-            $options = $this->findModelO($qestion->id);
-            foreach ($options as $option){
-                $option->delete();
-            }
-            $qestion->delete();
-        }
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', 'Record  <strong>"' . $name . '"</strong> deleted successfully.');
         }
@@ -279,24 +271,6 @@ class TestsController extends Controller
     protected function findModel($id)
     {
         if (($model = Person::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-// пошук питань
-    protected function findModelQ($id)
-    {
-        if (($model = House::findAll([ 'tests_id' =>  $id])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-    //пошук варіантів відповідей
-    protected function findModelO($id)
-    {
-        if (($model = Room::findAll([ 'qestion_id' =>  $id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
