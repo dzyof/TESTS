@@ -243,84 +243,84 @@ class SiteController extends Controller
                 $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
             }
         }
-        if ($modelPerson->load(Yii::$app->request->post())) {
+//        if ($modelPerson->load(Yii::$app->request->post())) {
+//
+//            // reset
+//            $modelsRoom = [];
+//
+//            $oldHouseIDs = ArrayHelper::map($modelsHouse, 'id', 'id');
+//            $modelsHouse = Model::createMultiple(House::classname(), $modelsHouse);
+//            Model::loadMultiple($modelsHouse, Yii::$app->request->post());
+//            $deletedHouseIDs = array_diff($oldHouseIDs, array_filter(ArrayHelper::map($modelsHouse, 'id', 'id')));
+//
+//            // validate person and houses models
+//            $valid = $modelPerson->validate();
+//            $valid = Model::validateMultiple($modelsHouse) && $valid;
+//
+//            $roomsIDs = [];
+//            if (isset($_POST['QestionOption'][0][0])) {
+//                foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
+//                    $roomsIDs = ArrayHelper::merge($roomsIDs, array_filter(ArrayHelper::getColumn($rooms, 'id')));
+//                    foreach ($rooms as $indexRoom => $room) {
+//                        $data['QestionOption'] = $room;
+//                        $modelRoom = (isset($room['id']) && isset($oldRooms[$room['id']])) ? $oldRooms[$room['id']] : new Room;
+//                        $modelRoom->load($data);
+//                        $modelsRoom[$indexHouse][$indexRoom] = $modelRoom;
+//                        $valid = $modelRoom->validate();
+//                    }
+//                }
+//            }
+//
+//            $oldRoomsIDs = ArrayHelper::getColumn($oldRooms, 'id');
+//            $deletedRoomsIDs = array_diff($oldRoomsIDs, $roomsIDs);
 
-            // reset
-            $modelsRoom = [];
-
-            $oldHouseIDs = ArrayHelper::map($modelsHouse, 'id', 'id');
-            $modelsHouse = Model::createMultiple(House::classname(), $modelsHouse);
-            Model::loadMultiple($modelsHouse, Yii::$app->request->post());
-            $deletedHouseIDs = array_diff($oldHouseIDs, array_filter(ArrayHelper::map($modelsHouse, 'id', 'id')));
-
-            // validate person and houses models
-            $valid = $modelPerson->validate();
-            $valid = Model::validateMultiple($modelsHouse) && $valid;
-
-            $roomsIDs = [];
-            if (isset($_POST['QestionOption'][0][0])) {
-                foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
-                    $roomsIDs = ArrayHelper::merge($roomsIDs, array_filter(ArrayHelper::getColumn($rooms, 'id')));
-                    foreach ($rooms as $indexRoom => $room) {
-                        $data['QestionOption'] = $room;
-                        $modelRoom = (isset($room['id']) && isset($oldRooms[$room['id']])) ? $oldRooms[$room['id']] : new Room;
-                        $modelRoom->load($data);
-                        $modelsRoom[$indexHouse][$indexRoom] = $modelRoom;
-                        $valid = $modelRoom->validate();
-                    }
-                }
-            }
-
-            $oldRoomsIDs = ArrayHelper::getColumn($oldRooms, 'id');
-            $deletedRoomsIDs = array_diff($oldRoomsIDs, $roomsIDs);
-
-            if ($valid) {
-                $transaction = Yii::$app->db->beginTransaction();
-                try {
-                    if ($flag = $modelPerson->save(false)) {
-
-                        if (! empty($deletedRoomsIDs)) {
-                            Room::deleteAll(['id' => $deletedRoomsIDs]);
-                        }
-
-                        if (! empty($deletedHouseIDs)) {
-                            House::deleteAll(['id' => $deletedHouseIDs]);
-                        }
-
-                        foreach ($modelsHouse as $indexHouse => $modelHouse) {
-
-                            if ($flag === false) {
-                                break;
-                            }
-
-                            $modelHouse->tests_id = $modelPerson->id;
-
-                            if (!($flag = $modelHouse->save(false))) {
-                                break;
-                            }
-
-                            if (isset($modelsRoom[$indexHouse]) && is_array($modelsRoom[$indexHouse])) {
-                                foreach ($modelsRoom[$indexHouse] as $indexRoom => $modelRoom) {
-                                    $modelRoom->qestion_id = $modelHouse->id;
-                                    if (!($flag = $modelRoom->save(false))) {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if ($flag) {
-                        $transaction->commit();
+//            if ($valid) {
+//                $transaction = Yii::$app->db->beginTransaction();
+//                try {
+//                    if ($flag = $modelPerson->save(false)) {
+//
+//                        if (! empty($deletedRoomsIDs)) {
+//                            Room::deleteAll(['id' => $deletedRoomsIDs]);
+//                        }
+//
+//                        if (! empty($deletedHouseIDs)) {
+//                            House::deleteAll(['id' => $deletedHouseIDs]);
+//                        }
+//
+//                        foreach ($modelsHouse as $indexHouse => $modelHouse) {
+//
+//                            if ($flag === false) {
+//                                break;
+//                            }
+//
+//                            $modelHouse->tests_id = $modelPerson->id;
+//
+//                            if (!($flag = $modelHouse->save(false))) {
+//                                break;
+//                            }
+//
+//                            if (isset($modelsRoom[$indexHouse]) && is_array($modelsRoom[$indexHouse])) {
+//                                foreach ($modelsRoom[$indexHouse] as $indexRoom => $modelRoom) {
+//                                    $modelRoom->qestion_id = $modelHouse->id;
+//                                    if (!($flag = $modelRoom->save(false))) {
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    if ($flag) {
+//                        $transaction->commit();
+////                        return $this->redirect(['view', 'id' => $modelPerson->id]);
 //                        return $this->redirect(['view', 'id' => $modelPerson->id]);
-                        return $this->redirect(['view', 'id' => $modelPerson->id]);
-                    } else {
-                        $transaction->rollBack();
-                    }
-                } catch (Exception $e) {
-                    $transaction->rollBack();
-                }
-            }
-        }
+//                    } else {
+//                        $transaction->rollBack();
+//                    }
+//                } catch (Exception $e) {
+//                    $transaction->rollBack();
+//                }
+//            }
+//        }
 
         return $this->render('test', [
             'modelPerson' => $modelPerson,
@@ -344,6 +344,13 @@ class SiteController extends Controller
 //            'timePass' => $timePass
 //        ]);
     }
+
+    public function actionRezult(){
+//        тут будуть оброблятися і зберігатися данні
+         return $this->render('rezult');
+    }
+
+
     protected function findModel($id)
     {
         if (($model = Person::findOne($id)) !== null) {

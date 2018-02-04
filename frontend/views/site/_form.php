@@ -74,7 +74,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <?php DynamicFormWidget::end(); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($modelPerson->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary','id' => 'autoSend']) ?>
+        <?= Html::submitButton('Все вірно - відправити відповіді ', ['class' => 'btn btn-primary','id' => 'autoSend']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

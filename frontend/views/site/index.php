@@ -16,8 +16,8 @@ $this->title = 'Tests system'
                 <th>#</th>
                 <th>назва тесту</th>
                 <th>час на проходженян</th>
-                <th>Кількість проходжень</th>
-                <th>Середня оцінка</th>
+<!--                <th>Кількість проходжень</th>-->
+<!--                <th>Середня оцінка</th>-->
             </tr>
 
             <?php
@@ -31,8 +31,8 @@ $this->title = 'Tests system'
                     </a>
 
                 <td><?= $test->time_passing ?>  хв.</td>
-                <td><?= $test->number_passing ?></td>
-                <td><?= $test->avarage_score ?></td>
+<!--                <td>--><?//= $test->number_passing ?><!--</td>-->
+<!--                <td>--><?//= $test->avarage_score ?><!--</td>-->
             </tr>
 
             <?php
