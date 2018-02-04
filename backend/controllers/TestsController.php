@@ -80,8 +80,6 @@ class TestsController extends Controller
             $valid = Model::validateMultiple($modelsHouse) && $valid;
             if (isset($_POST['QestionOption'][0][0])) {
                 foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
-
-
                     foreach ($rooms as $indexRoom => $room) {
                         $data['QestionOption'] = $room;
                         $modelRoom = new Room;
@@ -122,7 +120,7 @@ class TestsController extends Controller
                         $transaction->commit();
 
 //                        return $this->redirect('view', 'id' => $modelPerson->id]);
-                        return $this->redirect( Url::toRoute(['tests/view', 'id' => $modelPerson->id]));
+                        return $this->redirect( Url::toRoute(['view', 'id' => $modelPerson->id]));
 //                        return Url::toRoute(['view', 'id' => $modelPerson->id]);
 //
                     } else {
@@ -161,8 +159,6 @@ class TestsController extends Controller
                 $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
             }
         }
-
-
         if ($modelPerson->load(Yii::$app->request->post())) {
 
             // reset
@@ -257,13 +253,9 @@ class TestsController extends Controller
      */
     public function actionDelete($id)
     {
-//     i.e : $oModel = ModelName::find()->with('originaltable_name')->
-//      where(['practiceCode' => $your_value])->all();
-//       you will select your records and delete. you will define your relation using with()
         $model = $this->findModel($id);
         $name = $model->name_tests;
         $qestions = $this->findModelQ($model->id);
-
         foreach ($qestions as $qestion){
             $options = $this->findModelO($qestion->id);
             foreach ($options as $option){
@@ -271,12 +263,6 @@ class TestsController extends Controller
             }
             $qestion->delete();
         }
-
-        // delete profile first to handle foreign key constraint
-//        $user = $this->findModel($id);
-//        $profile = $user->profile;
-//        $profile->delete();
-//        $user->delete();
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', 'Record  <strong>"' . $name . '"</strong> deleted successfully.');
         }

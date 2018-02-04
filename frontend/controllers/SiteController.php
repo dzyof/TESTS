@@ -78,8 +78,8 @@ class SiteController extends Controller
     {
         $tests = Tests::find()->all();
 
-        return $this->render('index', [            'tests' => $tests,
-
+        return $this->render('index', [
+            'tests' => $tests,
         ]);
     }
 
@@ -219,16 +219,16 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTest()
+    public function actionTest($id)
     {
-        $test = Qestion::find()->where(['tests_id' => Yii::$app->request->get()['id']])->all();
-//        $options = QestionOption::find()->where($test->id)->andWhere()->all();
+        $test = Qestion::find()->where(['tests_id' => $id])->all();
+
         $options =[];
         foreach ($test as $tes) {
             array_push($options, QestionOption::find()->where(['qestion_id' => $tes->id])->all());
         }
-        $timePassing = Tests::find()->where(['id' => Yii::$app->request->get()['id']])->all();
-        $timePass = $timePassing[0]->time_passing;
+        $timePassing = Tests::find()->where(['id' => $id])->one();
+        $timePass = $timePassing->time_passing;
 
         return $this->render('test', [
             'test' => $test,
@@ -236,13 +236,4 @@ class SiteController extends Controller
             'timePass' => $timePass
         ]);
     }
-
-
-
-//    public function actionOption(){
-//
-//        return $this->render('option',[
-//
-//        ]);
-//    }
 }

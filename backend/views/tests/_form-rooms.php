@@ -40,7 +40,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     }
                     ?>
                     <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label(false)->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label(false)->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label(false)->dropDownList(
+                        [ 0 => 'Не Вірно',
+                          1 => 'Вірно' ]
+                    ) ?>
                 </td>
                 <td class="text-center vcenter" style="width: 90px;">
                     <button type="button" class="remove-room btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus"></span></button>
