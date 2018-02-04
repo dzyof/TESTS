@@ -30,8 +30,6 @@ $this->title = 'Tests system'
                                 <td> <?= $test->data_pass ?></td>
                                 <td><?= $test->correct_unswer ?> </td>
                                 <td><?= $test->wrong_unswer ?></td>
-
-
                             </tr>
                             <?php
                         }

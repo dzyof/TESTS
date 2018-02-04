@@ -85,7 +85,7 @@ class Rezults extends \yii\db\ActiveRecord
         $i = 0;
         $arr =[];
         foreach ($rezult as $key => $rez) {
-            if ($i >=3) {
+            if ($i >=2) {
                 $qestAbsw = explode("/", $key);
                 var_dump($qestAbsw);
 //                    echo $qestAbsw[0]."__>";

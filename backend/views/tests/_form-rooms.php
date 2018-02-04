@@ -23,7 +23,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Description</th>
+            <th>Варіант</th>
             <th class="text-center">
                 <button type="button" class="add-room btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
             </th>

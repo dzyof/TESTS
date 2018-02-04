@@ -35,7 +35,7 @@ class RezultController extends \yii\web\Controller
         $date = new DateTime();
 
         $rezultt = new Rezults();
-        $rezultt->user_id = $userId;
+        $rezultt->user_id = Yii::$app->user->id;
         $rezultt->test_id = $rezult['test_id'];
         $rezultt->correct_unswer = $trufalse[0];
         $rezultt->wrong_unswer = $trufalse[1];

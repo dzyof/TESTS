@@ -16,16 +16,14 @@ use wbraganca\dynamicform\DynamicFormWidget;
     'model' => $modelsRoom[0],
     'formId' => 'dynamic-form',
     'formFields' => [
-        'description'
+        'option_text',
+        'correct_option'
     ],
 ]); ?>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Description</th>
-            <th class="text-center">
-                <button type="button" class="add-room btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
-            </th>
+            <th>Варіант</th>
         </tr>
         </thead>
         <tbody class="container-rooms">
@@ -38,10 +36,11 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
                     }
                     ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]description")->label(false)->textInput(['maxlength' => true]) ?>
-                </td>
-                <td class="text-center vcenter" style="width: 90px;">
-                    <button type="button" class="remove-room btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus"></span></button>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label(false)->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label(false)->dropDownList(
+                        [ 0 => 'Не Вірно',
+                          1 => 'Вірно' ]
+                    ) ?>
                 </td>
             </tr>
         <?php endforeach; ?>

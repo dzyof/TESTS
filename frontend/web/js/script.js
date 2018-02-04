@@ -8,8 +8,8 @@ window.onload = function() {
             $('.seconds').text(_Seconds); // выводим получившееся значение в блок
         } else {
             clearInterval(int); // очищаем интервал, чтобы он не продолжал работу при _Seconds = 0
-            window.location.href = "/";
-            // $('#autoSend').click();
+            // window.location.href = "/";
+            $('#autoSend').click();
         }
     }, 1000);
 }

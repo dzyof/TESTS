@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -16,6 +17,15 @@ use frontend\models\ContactForm;
 use backend\models\Tests;
 use backend\models\Qestion;
 use backend\models\QestionOption;
+
+use backend\models\MyModel as Model;
+
+
+use backend\models\Tests as Person;
+use backend\models\Qestion as House;
+use backend\models\QestionOption as Room;
+
+use backend\models\TestsSearch as PersonQuery;
 
 /**
  * Site controller
@@ -221,19 +231,125 @@ class SiteController extends Controller
 
     public function actionTest($id)
     {
-        $test = Qestion::find()->where(['tests_id' => $id])->all();
+        $modelPerson = $this->findModel($id);
+        $modelsHouse = $modelPerson->qestions;
+        $modelsRoom = [];
+        $oldRooms = [];
 
-        $options =[];
-        foreach ($test as $tes) {
-            array_push($options, QestionOption::find()->where(['qestion_id' => $tes->id])->all());
+        if (!empty($modelsHouse)) {
+            foreach ($modelsHouse as $indexHouse => $modelHouse) {
+                $rooms = $modelHouse->options;
+                $modelsRoom[$indexHouse] = $rooms;
+                $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
+            }
         }
-        $timePassing = Tests::find()->where(['id' => $id])->one();
-        $timePass = $timePassing->time_passing;
+        if ($modelPerson->load(Yii::$app->request->post())) {
+
+            // reset
+            $modelsRoom = [];
+
+            $oldHouseIDs = ArrayHelper::map($modelsHouse, 'id', 'id');
+            $modelsHouse = Model::createMultiple(House::classname(), $modelsHouse);
+            Model::loadMultiple($modelsHouse, Yii::$app->request->post());
+            $deletedHouseIDs = array_diff($oldHouseIDs, array_filter(ArrayHelper::map($modelsHouse, 'id', 'id')));
+
+            // validate person and houses models
+            $valid = $modelPerson->validate();
+            $valid = Model::validateMultiple($modelsHouse) && $valid;
+
+            $roomsIDs = [];
+            if (isset($_POST['QestionOption'][0][0])) {
+                foreach ($_POST['QestionOption'] as $indexHouse => $rooms) {
+                    $roomsIDs = ArrayHelper::merge($roomsIDs, array_filter(ArrayHelper::getColumn($rooms, 'id')));
+                    foreach ($rooms as $indexRoom => $room) {
+                        $data['QestionOption'] = $room;
+                        $modelRoom = (isset($room['id']) && isset($oldRooms[$room['id']])) ? $oldRooms[$room['id']] : new Room;
+                        $modelRoom->load($data);
+                        $modelsRoom[$indexHouse][$indexRoom] = $modelRoom;
+                        $valid = $modelRoom->validate();
+                    }
+                }
+            }
+
+            $oldRoomsIDs = ArrayHelper::getColumn($oldRooms, 'id');
+            $deletedRoomsIDs = array_diff($oldRoomsIDs, $roomsIDs);
+
+            if ($valid) {
+                $transaction = Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $modelPerson->save(false)) {
+
+                        if (! empty($deletedRoomsIDs)) {
+                            Room::deleteAll(['id' => $deletedRoomsIDs]);
+                        }
+
+                        if (! empty($deletedHouseIDs)) {
+                            House::deleteAll(['id' => $deletedHouseIDs]);
+                        }
+
+                        foreach ($modelsHouse as $indexHouse => $modelHouse) {
+
+                            if ($flag === false) {
+                                break;
+                            }
+
+                            $modelHouse->tests_id = $modelPerson->id;
+
+                            if (!($flag = $modelHouse->save(false))) {
+                                break;
+                            }
+
+                            if (isset($modelsRoom[$indexHouse]) && is_array($modelsRoom[$indexHouse])) {
+                                foreach ($modelsRoom[$indexHouse] as $indexRoom => $modelRoom) {
+                                    $modelRoom->qestion_id = $modelHouse->id;
+                                    if (!($flag = $modelRoom->save(false))) {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+//                        return $this->redirect(['view', 'id' => $modelPerson->id]);
+                        return $this->redirect(['view', 'id' => $modelPerson->id]);
+                    } else {
+                        $transaction->rollBack();
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        }
 
         return $this->render('test', [
-            'test' => $test,
-            'options' => $options,
-            'timePass' => $timePass
+            'modelPerson' => $modelPerson,
+            'modelsHouse' => (empty($modelsHouse)) ? [new House] : $modelsHouse,
+            'modelsRoom' => (empty($modelsRoom)) ? [[new Room]] : $modelsRoom
         ]);
+
+
+//        $test = Qestion::find()->where(['tests_id' => $id])->all();
+//
+//        $options =[];
+//        foreach ($test as $tes) {
+//            array_push($options, QestionOption::find()->where(['qestion_id' => $tes->id])->all());
+//        }
+//        $timePassing = Tests::find()->where(['id' => $id])->one();
+//        $timePass = $timePassing->time_passing;
+//
+//        return $this->render('test', [
+//            'test' => $test,
+//            'options' => $options,
+//            'timePass' => $timePass
+//        ]);
+    }
+    protected function findModel($id)
+    {
+        if (($model = Person::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

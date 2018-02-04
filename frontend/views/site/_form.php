@@ -8,14 +8,17 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
 <div class="person-form">
 
+
+    Залишилося  часу <span class="seconds"> <?= $modelPerson->time_passing * 60 ?></span>с.
     <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
+
 
     <div class="row">
         <div class="col-sm-6">
-            <?= $form->field($modelPerson, 'first_name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-6">
-            <?= $form->field($modelPerson, 'last_name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
@@ -34,17 +37,14 @@ use wbraganca\dynamicform\DynamicFormWidget;
         'model' => $modelsHouse[0],
         'formId' => 'dynamic-form',
         'formFields' => [
-            'description',
+            'text_qestion',
         ],
     ]); ?>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
-            <th>Houses</th>
-            <th style="width: 450px;">Rooms</th>
-            <th class="text-center" style="width: 90px;">
-                <button type="button" class="add-house btn btn-success btn-xs"><span class="fa fa-plus"></span></button>
-            </th>
+            <th>Питання</th>
+            <th style="width: 450px;">Варіанти відповіді</th>
         </tr>
         </thead>
         <tbody class="container-items">
@@ -57,7 +57,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]id");
                     }
                     ?>
-                    <?= $form->field($modelHouse, "[{$indexHouse}]description")->label(false)->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label(false)->textInput(['maxlength' => true]) ?>
                 </td>
                 <td>
                     <?= $this->render('_form-rooms', [
@@ -66,9 +66,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         'modelsRoom' => $modelsRoom[$indexHouse],
                     ]) ?>
                 </td>
-                <td class="text-center vcenter" style="width: 90px; verti">
-                    <button type="button" class="remove-house btn btn-danger btn-xs"><span class="fa fa-minus"></span></button>
-                </td>
+
             </tr>
         <?php endforeach; ?>
         </tbody>
@@ -76,7 +74,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <?php DynamicFormWidget::end(); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($modelPerson->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton($modelPerson->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary','id' => 'autoSend']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

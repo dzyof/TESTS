@@ -40,8 +40,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
-            <th>Houses</th>
-            <th style="width: 450px;">Rooms</th>
+            <th>Питання</th>
+            <th style="width: 450px;">Варіанти відповіді</th>
             <th class="text-center" style="width: 90px;">
                 <button type="button" class="add-house btn btn-success btn-xs"><span class="fa fa-plus"></span></button>
             </th>
