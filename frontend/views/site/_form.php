@@ -15,6 +15,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
     <div class="row">
         <div class="col-sm-6">
+            <?= $modelPerson->name_tests ?>
             <?= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-6">
@@ -41,12 +42,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
         ],
     ]); ?>
     <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th>Питання</th>
-            <th style="width: 450px;">Варіанти відповіді</th>
-        </tr>
-        </thead>
         <tbody class="container-items">
         <?php foreach ($modelsHouse as $indexHouse => $modelHouse): ?>
             <tr class="house-item">
@@ -57,14 +52,15 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]id");
                     }
                     ?>
-                    <?= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label(false)->textInput(['maxlength' => true]) ?>
-                </td>
-                <td>
+                    <?= $modelHouse->text_qestion ?>
+<!--                    --><?//= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label($modelHouse->text_qestion)->textInput(['maxlength' => true]) ?>
                     <?= $this->render('_form-rooms', [
                         'form' => $form,
                         'indexHouse' => $indexHouse,
                         'modelsRoom' => $modelsRoom[$indexHouse],
                     ]) ?>
+
+
                 </td>
 
             </tr>

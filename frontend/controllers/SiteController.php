@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\Rezults;
+use frontend\models\RezultsOption;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
@@ -19,11 +21,6 @@ use backend\models\Qestion;
 use backend\models\QestionOption;
 
 use backend\models\MyModel as Model;
-
-
-use backend\models\Tests as Person;
-use backend\models\Qestion as House;
-use backend\models\QestionOption as Room;
 
 use backend\models\TestsSearch as PersonQuery;
 
@@ -231,6 +228,9 @@ class SiteController extends Controller
 
     public function actionTest($id)
     {
+
+
+
         $modelPerson = $this->findModel($id);
         $modelsHouse = $modelPerson->qestions;
         $modelsRoom = [];
@@ -243,7 +243,13 @@ class SiteController extends Controller
                 $oldRooms = ArrayHelper::merge(ArrayHelper::index($rooms, 'id'), $oldRooms);
             }
         }
-//        if ($modelPerson->load(Yii::$app->request->post())) {
+
+
+        if ($modelPerson->load(Yii::$app->request->post())) {
+            var_dump( Yii::$app->request->post());
+            die();
+        }
+
 //
 //            // reset
 //            $modelsRoom = [];
@@ -323,9 +329,13 @@ class SiteController extends Controller
 //        }
 
         return $this->render('test', [
+
             'modelPerson' => $modelPerson,
-            'modelsHouse' => (empty($modelsHouse)) ? [new House] : $modelsHouse,
-            'modelsRoom' => (empty($modelsRoom)) ? [[new Room]] : $modelsRoom
+            'modelsHouse' => (empty($modelsHouse)) ? [new Qestion] : $modelsHouse,
+            'modelsRoom' => (empty($modelsRoom)) ? [[new QestionOption]] : $modelsRoom,
+            'modelRezult' => new Rezults,
+            'modelRezultsOption' => new RezultsOption,
+
         ]);
 
 
@@ -353,7 +363,7 @@ class SiteController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Person::findOne($id)) !== null) {
+        if (($model = Tests::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

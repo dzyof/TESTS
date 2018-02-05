@@ -17,19 +17,18 @@ $this->title = 'Tests system'
                 <th>ІD тесту що проходився</th>
                 <th>ід користувача який проходив тест</th>
                 <th>Дата проходження</th>
-                <th>Кількість правильних відповідей</th>
-                <th>Кількість неправильних відповідей</th>
+<!--                <th>Кількість правильних відповідей</th>-->
+<!--                <th>Кількість неправильних відповідей</th>-->
             </tr>
-
-                        <?php
+            <?php
                         foreach ($model as $test) {
                             ?>
                             <tr>
                                 <td> <?= $test->id ?></td>
                                 <td> <?= $test->user_id ?></td>
                                 <td> <?= $test->data_pass ?></td>
-                                <td><?= $test->correct_unswer ?> </td>
-                                <td><?= $test->wrong_unswer ?></td>
+<!--                                <td>--><?//= $test->correct_unswer ?><!-- </td>-->
+<!--                                <td>--><?//= $test->wrong_unswer ?><!--</td>-->
                             </tr>
                             <?php
                         }

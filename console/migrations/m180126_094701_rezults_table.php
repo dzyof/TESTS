@@ -23,8 +23,6 @@ class m180126_094701_rezults_table extends Migration
             'user_id' => $this->integer()->notNull(),
             'data_pass' =>  $this->dateTime(),
             'test_id' => $this->integer()->notNull(),
-            'correct_unswer' => $this->integer()->notNull(),
-            'wrong_unswer' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey('rez_user', 'rezults', 'user_id', 'user', 'id');

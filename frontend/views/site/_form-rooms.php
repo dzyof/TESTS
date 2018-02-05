@@ -21,11 +21,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
     ],
 ]); ?>
     <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Варіант</th>
-        </tr>
-        </thead>
         <tbody class="container-rooms">
         <?php foreach ($modelsRoom as $indexRoom => $modelRoom): ?>
             <tr class="room-item">
@@ -36,11 +31,16 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
                     }
                     ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label(false)->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label(false)->dropDownList(
-                        [ 0 => 'Не Вірно',
-                          1 => 'Вірно' ]
-                    ) ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(); ?>
+                    </td>
+                <td class="vcenter">
+                    <?php
+                    // necessary for update action.
+                    if (! $modelRoom->isNewRecord) {
+                        echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
+                    }
+                    ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label(false)->checkbox(['checked' => false]) ?>
                 </td>
             </tr>
         <?php endforeach; ?>
