@@ -1,6 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+
+
+
 use frontend\models\Rezults;
 use frontend\models\RezultsOption;
 use Yii;
@@ -246,7 +249,10 @@ class SiteController extends Controller
 
 
         if ($modelPerson->load(Yii::$app->request->post())) {
+            echo "<pre>";
+
             var_dump( Yii::$app->request->post());
+            echo "</pre>";
             die();
         }
 
@@ -329,7 +335,6 @@ class SiteController extends Controller
 //        }
 
         return $this->render('test', [
-
             'modelPerson' => $modelPerson,
             'modelsHouse' => (empty($modelsHouse)) ? [new Qestion] : $modelsHouse,
             'modelsRoom' => (empty($modelsRoom)) ? [[new QestionOption]] : $modelsRoom,
