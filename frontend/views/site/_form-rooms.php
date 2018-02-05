@@ -21,6 +21,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
     ],
 ]); ?>
     <table class="table table-bordered">
+
         <tbody class="container-rooms">
         <?php foreach ($modelsRoom as $indexRoom => $modelRoom): ?>
             <tr class="room-item">
@@ -31,7 +32,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
                     }
                     ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(); ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(['value' =>$modelRoom->option_text]); ?>
                     </td>
                 <td class="vcenter">
                     <?php
@@ -40,7 +41,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
                     }
                     ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label(false)->checkbox(['checked' => false]) ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label($modelRoom->option_text)->checkbox() ?>
                 </td>
             </tr>
         <?php endforeach; ?>

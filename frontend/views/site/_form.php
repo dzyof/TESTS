@@ -16,10 +16,20 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <div class="row">
         <div class="col-sm-6">
             <?= $modelPerson->name_tests ?>
-            <?= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true]) ?>
+
+            <?php
+            // necessary for update action.
+            if (! $modelHouse->isNewRecord) {
+                echo Html::activeHiddenInput($modelPerson, "name_tests");
+            }
+            ?>
+
+<!--            --><?//= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true]) ?>
+
         </div>
         <div class="col-sm-6">
-            <?= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true]) ?>
+            <?= Html::activeHiddenInput($modelPerson, "time_passing"); ?>
+<!--            --><?//= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
@@ -53,11 +63,18 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     }
                     ?>
                     <?= $modelHouse->text_qestion ?>
+                    <?php
+                    // necessary for update action.
+                    if (! $modelHouse->isNewRecord) {
+                        echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]text_qestion");
+                    }
+                    ?>
 <!--                    --><?//= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label($modelHouse->text_qestion)->textInput(['maxlength' => true]) ?>
                     <?= $this->render('_form-rooms', [
                         'form' => $form,
                         'indexHouse' => $indexHouse,
                         'modelsRoom' => $modelsRoom[$indexHouse],
+
                     ]) ?>
 
 

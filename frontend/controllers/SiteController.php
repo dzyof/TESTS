@@ -250,9 +250,29 @@ class SiteController extends Controller
 
         if ($modelPerson->load(Yii::$app->request->post())) {
             echo "<pre>";
-
-            var_dump( Yii::$app->request->post());
+//            var_dump( Yii::$app->request->post());
+             $mod =  Yii::$app->request->post();
+            if (isset($_POST['Qestion']) && $_POST['QestionOption']) {
+                foreach ($_POST['Qestion'] as $qestion ){
+                    var_dump($qestion);
+                    foreach ($_POST['QestionOption'] as $questionOption ){
+                        var_dump($questionOption);
+                    }
+                }
+            }
+//             var_dump($mod);
             echo "</pre>";
+
+            $modelRezultsOption = new RezultsOption;
+            $modelRezultsOption->rezult_id = 1;
+            $modelRezultsOption->question  = 'aasdasdasda';
+            $modelRezultsOption->questions_answer = 'dsfsfsdf';
+            $modelRezultsOption->right_answer = 'sdfsdfsdf';
+            $modelRezultsOption->status = 1;
+            $modelRezultsOption->save();
+
+
+
             die();
         }
 
@@ -338,8 +358,6 @@ class SiteController extends Controller
             'modelPerson' => $modelPerson,
             'modelsHouse' => (empty($modelsHouse)) ? [new Qestion] : $modelsHouse,
             'modelsRoom' => (empty($modelsRoom)) ? [[new QestionOption]] : $modelsRoom,
-            'modelRezult' => new Rezults,
-            'modelRezultsOption' => new RezultsOption,
 
         ]);
 
