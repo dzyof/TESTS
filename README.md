@@ -11,5 +11,6 @@
   'dsn' => 'mysql:host=localhost;dbname=YOUR DB',
 3. Run next comand.</br>
         yii migrate - creates a base </br>
+        yii migrate --migrationPath=@yii/rbac/migrations</br>
         yii fill/user - creates a user and admin </br>
         yii fill/table - creates several tests</br>
