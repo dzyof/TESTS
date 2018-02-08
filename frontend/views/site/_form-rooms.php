@@ -30,17 +30,12 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     // necessary for update action.
                     if (! $modelRoom->isNewRecord) {
                         echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
+                        echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]qestion_id");
                     }
                     ?>
                     <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(['value' =>$modelRoom->option_text]); ?>
                     </td>
                 <td class="vcenter">
-                    <?php
-                    // necessary for update action.
-                    if (! $modelRoom->isNewRecord) {
-                        echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]id");
-                    }
-                    ?>
                     <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label($modelRoom->option_text)->checkbox() ?>
                 </td>
             </tr>

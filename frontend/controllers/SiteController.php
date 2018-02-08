@@ -4,8 +4,9 @@ namespace frontend\controllers;
 
 
 
-use frontend\models\Rezults;
+use frontend\models\Rezult;
 use frontend\models\RezultsOption;
+
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
@@ -231,9 +232,7 @@ class SiteController extends Controller
 
     public function actionTest($id)
     {
-
-
-
+        $modelRezult = new Rezult;
         $modelPerson = $this->findModel($id);
         $modelsHouse = $modelPerson->qestions;
         $modelsRoom = [];
@@ -249,31 +248,28 @@ class SiteController extends Controller
 
 
         if ($modelPerson->load(Yii::$app->request->post())) {
-            echo "<pre>";
-//            var_dump( Yii::$app->request->post());
-             $mod =  Yii::$app->request->post();
             if (isset($_POST['Qestion']) && $_POST['QestionOption']) {
-                foreach ($_POST['Qestion'] as $qestion ){
-                    var_dump($qestion);
-                    foreach ($_POST['QestionOption'] as $questionOption ){
-                        var_dump($questionOption);
-                    }
-                }
+
+
+                $modelRezultsOption = new RezultsOption;
+                $modelRezultsOption->id = 1;
+                $modelRezultsOption->rezult_id = 1;
+                $modelRezultsOption->question  = '45454545';
+                $modelRezultsOption->questions_answer = 'ghjgh';
+                $modelRezultsOption->right_answer = 'fghfg';
+                $modelRezultsOption->status = 1;
+                $modelRezultsOption->save();
+
+
+
+
+
+                $modelRezult->saveRezult(Yii::$app->request->post());
+
+//                return $this->redirect(['rezult' ,
+//                    'rezultate' => $modelRezult->saveRezult(Yii::$app->request->post())]);
+                return $this->redirect(['rezult']);
             }
-//             var_dump($mod);
-            echo "</pre>";
-
-            $modelRezultsOption = new RezultsOption;
-            $modelRezultsOption->rezult_id = 1;
-            $modelRezultsOption->question  = 'aasdasdasda';
-            $modelRezultsOption->questions_answer = 'dsfsfsdf';
-            $modelRezultsOption->right_answer = 'sdfsdfsdf';
-            $modelRezultsOption->status = 1;
-            $modelRezultsOption->save();
-
-
-
-            die();
         }
 
 //

@@ -2,7 +2,7 @@
 
 namespace backend\models;
 
-use frontend\models\Rezults;
+use frontend\models\Rezult;
 use Yii;
 
 /**

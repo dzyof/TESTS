@@ -31,8 +31,9 @@ class QestionOption extends \yii\db\ActiveRecord
     {
         return [
             [[ 'option_text'], 'required'],
-            [['qestion_id', 'correct_option'], 'integer'],
+            [['qestion_id'], 'integer'],
             [['option_text'], 'string', 'max' => 255],
+            [['correct_option'], 'string', 'max' => 255],
             [['qestion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Qestion::className(), 'targetAttribute' => ['qestion_id' => 'id']],
         ];
     }

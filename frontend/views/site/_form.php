@@ -21,6 +21,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
             // necessary for update action.
             if (! $modelHouse->isNewRecord) {
                 echo Html::activeHiddenInput($modelPerson, "name_tests");
+                echo Html::activeHiddenInput($modelPerson, "id");
             }
             ?>
 
@@ -57,6 +58,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <tr class="house-item">
                 <td class="vcenter">
                     <?php
+
                     // necessary for update action.
                     if (! $modelHouse->isNewRecord) {
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]id");
@@ -74,7 +76,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         'form' => $form,
                         'indexHouse' => $indexHouse,
                         'modelsRoom' => $modelsRoom[$indexHouse],
-
                     ]) ?>
 
 

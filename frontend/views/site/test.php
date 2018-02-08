@@ -59,13 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    </div>-->
 <!--    Залишилося  часу <span class="seconds"> --><?//= $timePass * 60 ?><!--</span>с.-->
 <!--</div>-->
-
-
+<?php
+    if( Yii::$app->user->id == false):
+        echo  Yii::$app->session->setFlash('error', 'Для збереження результатів проходження тесту - порібно залогінитися на сайті');
+    endif;
+?>
 <div class="tests-update">
-
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
 //        'model' => $model,
         'modelPerson' => $modelPerson,

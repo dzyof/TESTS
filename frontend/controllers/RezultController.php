@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use backend\models\Qestion;
 use backend\models\QestionOption;
 use DateTime;
-use frontend\models\Rezults;
+use frontend\models\Rezult;
 use Yii;
 use yii\data\ActiveDataProvider;
 
@@ -13,7 +13,7 @@ class RezultController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $model = Rezults::find()->all();
+        $model = Rezult::find()->all();
 
         return $this->render('index', [
             'model' => $model,
@@ -24,7 +24,7 @@ class RezultController extends \yii\web\Controller
 
     public function actionRezult()
     {
-        $model = new Rezults();
+        $model = new Rezult();
 
         if (Yii::$app->request->post()) {
             $rezult =  Yii::$app->request->post();
@@ -34,11 +34,11 @@ class RezultController extends \yii\web\Controller
 
         $date = new DateTime();
 
-        $rezultt = new Rezults();
+        $rezultt = new Rezult();
         $rezultt->user_id = Yii::$app->user->id;
         $rezultt->test_id = $rezult['test_id'];
-        $rezultt->correct_unswer = $trufalse[0];
-        $rezultt->wrong_unswer = $trufalse[1];
+//        $rezultt->correct_unswer = $trufalse[0];
+//        $rezultt->wrong_unswer = $trufalse[1];
         $rezultt->data_pass = $date->format('Y-m-d H:i:s');
         $rezultt->save();
 
