@@ -9,7 +9,12 @@ window.onload = function() {
         } else {
             clearInterval(int); // очищаем интервал, чтобы он не продолжал работу при _Seconds = 0
             // window.location.href = "/";
-            $('#autoSend').click();
+            // $('#autoSend').click();
+            $('#myModal').modal('show');
         }
     }, 1000);
-}
+
+    $('#myModal').on('hidden.bs.modal', function () {
+        document.location.href="/";
+    })
+}   

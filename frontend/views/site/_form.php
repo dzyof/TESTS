@@ -9,7 +9,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 <div class="person-form">
 
 
-    Залишилося  часу <span class="seconds"> <?= $modelPerson->time_passing * 60 ?></span>с.
+    Залишилося  часу <span class="seconds"> <?= $modelPerson->time_passing * 5 ?></span>с.
     <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
 
 

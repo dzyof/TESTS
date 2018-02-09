@@ -64,6 +64,8 @@ $this->params['breadcrumbs'][] = $this->title;
         echo  Yii::$app->session->setFlash('error', 'Для збереження результатів проходження тесту - порібно залогінитися на сайті');
     endif;
 ?>
+
+
 <div class="tests-update">
     <?= $this->render('_form', [
 //        'model' => $model,
@@ -71,4 +73,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'modelsHouse' => $modelsHouse,
         'modelsRoom' => $modelsRoom,
     ]) ?>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
+<div  id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            нажаль ви не вклалися в час </br> - спробуйте ще раз
+
+        </div>
+    </div>
 </div>
