@@ -23,13 +23,20 @@ $this->title = 'Tests system'
             <?php
                         foreach ($model as $test) {
                             ?>
+
                             <tr>
-                                <td> <?= $test->id ?></td>
-                                <td> <?= $test->user_id ?></td>
-                                <td> <?= $test->data_pass ?></td>
+                                <td>
+                                <a href="<?= Url::to(['rezult/option', 'id'=> $test->id]) ?>">
+                                    <?= $test->id ?>
+                                </a>
+                                </td>
+                                    <td> <?= $test->user_id ?></td>
+                                    <td> <?= $test->data_pass ?></td>
+
 <!--                                <td>--><?//= $test->correct_unswer ?><!-- </td>-->
 <!--                                <td>--><?//= $test->wrong_unswer ?><!--</td>-->
                             </tr>
+
                             <?php
                         }
                         ?>

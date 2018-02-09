@@ -117,8 +117,7 @@ class Rezult extends \yii\db\ActiveRecord
     // новий варіант
 
 
-    public function saveRezult($models){
-
+    public function saveRezult(){
 
         $date = new DateTime();
 
@@ -134,30 +133,9 @@ class Rezult extends \yii\db\ActiveRecord
         $modelRezult->save();
         $rezultId =  $modelRezult->getPrimaryKey();
 
-
         echo "<pre>";
-
-//        var_dump($models);
-
         if (isset($_POST['Qestion']) && $_POST['QestionOption']):
-//            foreach ($_POST['Qestion'] as  $question){
-////                var_dump($question);
-//                foreach ($_POST['QestionOption'] as $questionOption ){
-//                    if ( $questionOption->qestion_id == $question->id ){
-//                        $modelRezultsOption = new RezultsOption();//
-//                        $modelRezultsOption->rezult_id = $rezultId;
-//                                    $modelRezultsOption->question  = $question['text_qestion'];
-//                                    $modelRezultsOption->questions_answer = 'ghjgh';
-//                                    $modelRezultsOption->right_answer = 'fghfg';
-//                                    $modelRezultsOption->status = 1;
-//                        $modelRezultsOption->save();
-//                    }
-//                }
-//            }
-
-
                 foreach ($_POST['QestionOption'] as $questionOption ):
-//                        if ($questionOption->qestion_id == $qestion->id)://
                             foreach ($questionOption as $option)://
                                 if ($option['option_text']){
                                     $modelRezultsOption = new RezultsOption();//
@@ -165,27 +143,16 @@ class Rezult extends \yii\db\ActiveRecord
                                     $modelRezultsOption->questions_answer = $option['option_text'];
                                     $modelRezultsOption->right_answer = 'text true ansver';
                                     $modelRezultsOption->status =  $option['correct_option'];
-
                                     foreach ($_POST['Qestion'] as  $qestion ):
-                                           if($qestion['id'] == $option['qestion_id'])
+                                           if($qestion['id'] == $option['qestion_id']){
                                                $modelRezultsOption->question  = $qestion['text_qestion'];
-
-//                                        var_dump($qestion['text_qestion']);
+                                           }
                                     endforeach;
                                     $modelRezultsOption->save();
-//////
                                 }
                             endforeach;
-//                endif;
                 endforeach;
         endif;
-//        var_dump($models);
-        die();
-//
         echo "</pre>";
-
-
-        //-----------------------------
-
     }
 }
