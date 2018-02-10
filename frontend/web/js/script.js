@@ -17,4 +17,4 @@ window.onload = function() {
     $('#myModal').on('hidden.bs.modal', function () {
         document.location.href="/";
     })
-}   
+}
