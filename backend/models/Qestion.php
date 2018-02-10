@@ -70,7 +70,4 @@ class Qestion extends \yii\db\ActiveRecord
     {
         return $this->hasMany(QestionOption::className(), ['qestion_id' => 'id']);
     }
-
-
-
 }

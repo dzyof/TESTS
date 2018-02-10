@@ -31,8 +31,8 @@ $this->title = 'Tests system'
                     </a>
 
                 <td><?= $test->time_passing ?>  хв.</td>
-<!--                <td>--><?//= $test->number_passing ?><!--</td>-->
-<!--                <td>--><?//= $test->avarage_score ?><!--</td>-->
+<!--                <td>--><?//= $test->number_passing?><!--</td>-->
+<!--                <td>--><?//= $test->avarage_score?><!--</td>-->
             </tr>
 
             <?php

@@ -19,8 +19,6 @@ use backend\models\QestionOption;
 
 use backend\models\TestsSearch;
 
-
-
 /**
  * DynamicformDemo3Controller implements the CRUD actions for Tests model.
  */
@@ -69,7 +67,6 @@ class TestsController extends Controller
         $modelsQestionOption = [[new QestionOption]];
 
         if ($modelTests->load(Yii::$app->request->post())) {
-
             $modelsQestion = Model::createMultiple(Qestion::classname());
             Model::loadMultiple($modelsQestion, Yii::$app->request->post());
 
@@ -93,7 +90,6 @@ class TestsController extends Controller
                 try {
                     if ($flag = $modelTests->save(false)) {
                         foreach ($modelsQestion as $indexQestion => $modelQestion) {
-
                             if ($flag === false) {
                                 break;
                             }
@@ -118,7 +114,7 @@ class TestsController extends Controller
                         $transaction->commit();
 
 //                        return $this->redirect('view', 'id' => $modelTests->id]);
-                        return $this->redirect( Url::toRoute(['view', 'id' => $modelTests->id]));
+                        return $this->redirect(Url::toRoute(['view', 'id' => $modelTests->id]));
 //                        return Url::toRoute(['view', 'id' => $modelTests->id]);
 //
                     } else {
@@ -192,7 +188,6 @@ class TestsController extends Controller
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
                     if ($flag = $modelTests->save(false)) {
-
                         if (! empty($deletedQestionOptionsIDs)) {
                             QestionOption::deleteAll(['id' => $deletedQestionOptionsIDs]);
                         }
@@ -202,7 +197,6 @@ class TestsController extends Controller
                         }
 
                         foreach ($modelsQestion as $indexQestion => $modelQestion) {
-
                             if ($flag === false) {
                                 break;
                             }

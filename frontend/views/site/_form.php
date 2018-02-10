@@ -7,12 +7,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
 ?>
 
 <div class="person-form">
-
-
     Залишилося  часу <span class="seconds"> <?= $modelPerson->time_passing * 5 ?></span>с.
     <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
-
-
     <div class="row">
         <div class="col-sm-6">
             <?= $modelPerson->name_tests ?>
@@ -24,20 +20,16 @@ use wbraganca\dynamicform\DynamicFormWidget;
                 echo Html::activeHiddenInput($modelPerson, "id");
             }
             ?>
-
-<!--            --><?//= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true]) ?>
-
+<!--            --><?//= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true])?>
         </div>
         <div class="col-sm-6">
             <?= Html::activeHiddenInput($modelPerson, "time_passing"); ?>
-<!--            --><?//= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true]) ?>
+<!--            --><?//= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true])?>
         </div>
     </div>
-
     <div class="padding-v-md">
         <div class="line line-dashed"></div>
     </div>
-
     <?php DynamicFormWidget::begin([
         'widgetContainer' => 'dynamicform_wrapper',
         'widgetBody' => '.container-items',
@@ -58,7 +50,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <tr class="house-item">
                 <td class="vcenter">
                     <?php
-
                     // necessary for update action.
                     if (! $modelHouse->isNewRecord) {
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]id");
@@ -71,16 +62,13 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]text_qestion");
                     }
                     ?>
-<!--                    --><?//= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label($modelHouse->text_qestion)->textInput(['maxlength' => true]) ?>
+<!--                    --><?//= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label($modelHouse->text_qestion)->textInput(['maxlength' => true])?>
                     <?= $this->render('_form-rooms', [
                         'form' => $form,
                         'indexHouse' => $indexHouse,
                         'modelsRoom' => $modelsRoom[$indexHouse],
                     ]) ?>
-
-
                 </td>
-
             </tr>
         <?php endforeach; ?>
         </tbody>

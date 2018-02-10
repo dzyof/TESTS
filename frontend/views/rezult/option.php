@@ -18,8 +18,8 @@
                     <td> <?= $test->questions_answer ?></td>
                     <td> <?= $test->status ?></td>
 
-                    <!--                                <td>--><?//= $test->correct_unswer ?><!-- </td>-->
-                    <!--                                <td>--><?//= $test->wrong_unswer ?><!--</td>-->
+                    <!--                                <td>--><?//= $test->correct_unswer?><!-- </td>-->
+                    <!--                                <td>--><?//= $test->wrong_unswer?><!--</td>-->
                 </tr>
 
                 <?php

@@ -33,8 +33,8 @@ $this->title = 'Tests system'
                                     <td> <?= $test->user_id ?></td>
                                     <td> <?= $test->data_pass ?></td>
 
-<!--                                <td>--><?//= $test->correct_unswer ?><!-- </td>-->
-<!--                                <td>--><?//= $test->wrong_unswer ?><!--</td>-->
+<!--                                <td>--><?//= $test->correct_unswer?><!-- </td>-->
+<!--                                <td>--><?//= $test->wrong_unswer?><!--</td>-->
                             </tr>
 
                             <?php

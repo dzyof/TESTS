@@ -15,21 +15,22 @@
 
 
             if (isset($_POST['Qestion']) && $_POST['QestionOption']):
-                foreach ($_POST['QestionOption'] as $questionOption ):
+                foreach ($_POST['QestionOption'] as $questionOption):
                     foreach ($questionOption as $option)://
-                        if ($option['option_text']){?>
+                        if ($option['option_text']) {
+                            ?>
                             <tr>
                                 <td> <?= $option['option_text'] ?></td>
                                 <td> <?= $option['correct_option'] ?></td>
 
                             <?php
-                            foreach ($_POST['Qestion'] as  $qestion ):
-                                if($qestion['id'] == $option['qestion_id']){
-                                ?>
+                            foreach ($_POST['Qestion'] as  $qestion):
+                                if ($qestion['id'] == $option['qestion_id']) {
+                                    ?>
                                     <td> <?= $qestion['text_qestion'] ?></td>
-                               <?php }
-                            endforeach;
-                            ?>
+                               <?php
+                                }
+                            endforeach; ?>
                       <tr>
                                 <?php
                         }

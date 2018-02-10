@@ -7,7 +7,6 @@ use yii\db\Migration;
  * Class m180208_144003_create_role_admin
  */
 class m180208_144003_create_role_admin extends Migration
-
 {
     protected $permissions = [
         'admin.article.reset-filter' => [User::ROLE_MODERATOR],
@@ -19,7 +18,6 @@ class m180208_144003_create_role_admin extends Migration
     {
         $authManager = Yii::$app->getAuthManager();
         if ($authManager instanceof yii\rbac\DbManager || $authManager instanceof DbManager) {
-
         } else {
             throw new \yii\base\InvalidConfigException('You should configure "authManager" component to use database before executing this migration.');
         }
@@ -61,4 +59,3 @@ class m180208_144003_create_role_admin extends Migration
         }
     }
 }
-

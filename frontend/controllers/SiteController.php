@@ -1,9 +1,6 @@
 <?php
 namespace frontend\controllers;
 
-
-
-
 use frontend\models\Rezult;
 use frontend\models\RezultsOption;
 
@@ -249,10 +246,10 @@ class SiteController extends Controller
 
         if ($modelPerson->load(Yii::$app->request->post())) {
             if (isset($_POST['Qestion']) && $_POST['QestionOption']) {
-                if(Yii::$app->user->id){
+                if (Yii::$app->user->id) {
                     $modelRezult->saveRezult();
                 }
-                 return $this->render('rezult',[
+                return $this->render('rezult', [
                      'data' => Yii::$app->request->post(),
                  ]);
             }
@@ -281,8 +278,9 @@ class SiteController extends Controller
 //        ]);
     }
 
-    public function actionRezult(){
-         return $this->render('rezult');
+    public function actionRezult()
+    {
+        return $this->render('rezult');
     }
 
 

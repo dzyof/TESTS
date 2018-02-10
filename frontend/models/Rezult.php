@@ -117,17 +117,17 @@ class Rezult extends \yii\db\ActiveRecord
     // новий варіант
 
 
-    public function saveRezult(){
-
+    public function saveRezult()
+    {
         $date = new DateTime();
 
         $modelRezult = new Rezult;
 
-        if( isset(Yii::$app->user->id)){
+        if (isset(Yii::$app->user->id)) {
             $modelRezult->user_id =Yii::$app->user->id ;
         }
         $modelRezult->data_pass  = $date->format('Y-m-d H:i:s');
-        if( isset($_POST['Tests']['id']) ){
+        if (isset($_POST['Tests']['id'])) {
             $modelRezult->test_id = $_POST['Tests']['id'];
         }
         $modelRezult->save();
@@ -135,23 +135,23 @@ class Rezult extends \yii\db\ActiveRecord
 
         echo "<pre>";
         if (isset($_POST['Qestion']) && $_POST['QestionOption']):
-                foreach ($_POST['QestionOption'] as $questionOption ):
+                foreach ($_POST['QestionOption'] as $questionOption):
                             foreach ($questionOption as $option)://
-                                if ($option['option_text']){
+                                if ($option['option_text']) {
                                     $modelRezultsOption = new RezultsOption();//
                                     $modelRezultsOption->rezult_id = $rezultId;
                                     $modelRezultsOption->questions_answer = $option['option_text'];
                                     $modelRezultsOption->right_answer = 'text true ansver';
                                     $modelRezultsOption->status =  $option['correct_option'];
-                                    foreach ($_POST['Qestion'] as  $qestion ):
-                                           if($qestion['id'] == $option['qestion_id']){
+                                    foreach ($_POST['Qestion'] as  $qestion):
+                                           if ($qestion['id'] == $option['qestion_id']) {
                                                $modelRezultsOption->question  = $qestion['text_qestion'];
                                            }
                                     endforeach;
                                     $modelRezultsOption->save();
                                 }
-                            endforeach;
-                endforeach;
+        endforeach;
+        endforeach;
         endif;
         echo "</pre>";
     }

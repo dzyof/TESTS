@@ -37,7 +37,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(['value' =>$modelRoom->option_text]); ?>
                     </td>
 <!--                <td class="vcenter">-->
-<!--                    --><?//= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label($modelRoom->option_text)->checkbox() ?>
+<!--                    --><?//= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option")->label($modelRoom->option_text)->checkbox()?>
 <!--                </td>-->
             </tr>
         <?php endforeach; ?>
