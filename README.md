@@ -8,6 +8,7 @@
 
 1. Download the project
 3. Run next comand.</br>
+        composer update    - add all dependencies
         yii migrate - creates a base </br>
         yii migrate --migrationPath=@yii/rbac/migrations</br>
         yii fill/user - creates a user and admin </br>
