@@ -35,23 +35,23 @@ class FillController extends \yii\console\Controller
     {
 
 
-        $test = new Tests();
-        $test->id = 1;
-        $test->name_tests = 'Філософія2';
-        $test->time_passing = 1;
-        $test->save();
-
-        $qestion = new Qestion();
-        $qestion->tests_id = 1;
+//        $test = new Tests();
+//        $test->id = 4;
+//        $test->name_tests = 'Філософія2';
+//        $test->time_passing = 1;
+//        $test->save();
+//
+//        $qestion = new Qestion();
+//        $qestion->tests_id = 4;
 //        $qestion->id = 23;
-        $qestion->text_qestion = 'В чьому смисл життя';
-        $qestion->save();
-
-        $option = new QestionOption();
-        $option->qestion_id = 23;
-        $option->option_text = 'самоудосконалення';
-        $option->correct_option = 0;
-        $option->save();
+//        $qestion->text_qestion = 'В чьому смисл життя';
+//        $qestion->save();
+//
+//        $option = new QestionOption();
+//        $option->qestion_id = 23;
+//        $option->option_text = 'самоудосконалення';
+//        $option->correct_option = 0;
+//        $option->save();
 
 
 
@@ -71,7 +71,7 @@ class FillController extends \yii\console\Controller
 //        $option->correct_option = 1;
 //        $option->save();
 
-        echo 'zapovnutu tablicy dannimi' . "\n";
+//        echo 'zapovnutu tablicy dannimi' . "\n";
         return ExitCode::OK;
     }
 }
