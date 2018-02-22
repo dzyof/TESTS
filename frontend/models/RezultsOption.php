@@ -32,7 +32,7 @@ class RezultsOption extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['rezult_id', 'question', 'questions_answer', 'right_answer', 'status'], 'required'],
+            [['rezult_id', 'question', 'questions_answer', 'right_answer', 'status'], 'required'],
 //            [['rezult_id', 'status'], 'integer'],
 //            [['question', 'questions_answer', 'right_answer'], 'string', 'max' => 255],
             [['rezult_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rezult::className(), 'targetAttribute' => ['rezult_id' => 'id']],
@@ -50,7 +50,7 @@ class RezultsOption extends \yii\db\ActiveRecord
             'question' => 'Question',
             'questions_answer' => 'Questions Answer',
             'right_answer' => 'Right Answer',
-            'status' => 'Status',
+//            'status' => 'Status',
         ];
     }
 

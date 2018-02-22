@@ -7,10 +7,9 @@
 </p>
 
 1. Download the project
-2. go to the folder comon/config and write in line
-  'dsn' => 'mysql:host=localhost;dbname=YOUR DB',
 3. Run next comand.</br>
         yii migrate - creates a base </br>
         yii migrate --migrationPath=@yii/rbac/migrations</br>
         yii fill/user - creates a user and admin </br>
-        yii fill/table - creates several tests</br>
+        
+        /admin  - enter in admin panel       

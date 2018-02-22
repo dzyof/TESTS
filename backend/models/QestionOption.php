@@ -30,7 +30,7 @@ class QestionOption extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'option_text'], 'required'],
+//            [[ 'option_text'], 'required'],
             [['qestion_id'], 'integer'],
             [['option_text'], 'string', 'max' => 255],
             [['correct_option'], 'string', 'max' => 255],

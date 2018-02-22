@@ -34,7 +34,7 @@ class Tests extends \yii\db\ActiveRecord
     {
         return [
             [['name_tests', 'time_passing'], 'required'],
-            [['time_passing', 'number_passing', 'avarage_score'], 'integer'],
+            [['time_passing', 'avarage_score'], 'integer'],
             [['created_at'], 'number'],
             [['name_tests'], 'string', 'max' => 255],
             [['name_tests'], 'unique'],
@@ -50,7 +50,6 @@ class Tests extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name_tests' => 'Назва тесту',
             'time_passing' => 'Час для проходження в хв.',
-            'number_passing' => 'кількість проходжень',
             'avarage_score' => 'Середня оцінка',
             'created_at' => 'Created At',
         ];

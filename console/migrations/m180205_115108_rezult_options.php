@@ -15,7 +15,7 @@ class m180205_115108_rezult_options extends Migration
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         }
 
         $this->createTable('{{%rezults_option}}', [
@@ -24,6 +24,7 @@ class m180205_115108_rezult_options extends Migration
             'question' =>   $this->string()->notNull(),
             'questions_answer' => $this->string()->notNull(),
             'right_answer' => $this->string()->notNull(),
+            'status' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey('option_rez', 'rezults_option', 'rezult_id', 'rezults', 'id');
