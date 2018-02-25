@@ -133,7 +133,7 @@ class Rezult extends \yii\db\ActiveRecord
         $modelRezult->save();
         $rezultId =  $modelRezult->getPrimaryKey();
 
-        echo "<pre>";
+       
         if (isset($_POST['Qestion']) && $_POST['QestionOption']):
                 foreach ($_POST['QestionOption'] as $questionOption):
                             foreach ($questionOption as $option)://
@@ -153,6 +153,6 @@ class Rezult extends \yii\db\ActiveRecord
         endforeach;
         endforeach;
         endif;
-        echo "</pre>";
+     
     }
 }
