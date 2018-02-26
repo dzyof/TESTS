@@ -3,14 +3,14 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\QestionOption;
-use backend\models\QestionOptionSearch;
+use backend\models\QuestionOption;
+use backend\models\QuestionOptionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * QestionOptionController implements the CRUD actions for QestionOption model.
+ * QestionOptionController implements the CRUD actions for QuestionOption model.
  */
 class QestionOptionController extends Controller
 {
@@ -30,12 +30,12 @@ class QestionOptionController extends Controller
     }
 
     /**
-     * Lists all QestionOption models.
+     * Lists all QuestionOption models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new QestionOptionSearch();
+        $searchModel = new QuestionOptionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class QestionOptionController extends Controller
     }
 
     /**
-     * Displays a single QestionOption model.
+     * Displays a single QuestionOption model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class QestionOptionController extends Controller
     }
 
     /**
-     * Creates a new QestionOption model.
+     * Creates a new QuestionOption model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new QestionOption();
+        $model = new QuestionOption();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class QestionOptionController extends Controller
     }
 
     /**
-     * Updates an existing QestionOption model.
+     * Updates an existing QuestionOption model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class QestionOptionController extends Controller
     }
 
     /**
-     * Deletes an existing QestionOption model.
+     * Deletes an existing QuestionOption model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class QestionOptionController extends Controller
     }
 
     /**
-     * Finds the QestionOption model based on its primary key value.
+     * Finds the QuestionOption model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return QestionOption the loaded model
+     * @return QuestionOption the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = QestionOption::findOne($id)) !== null) {
+        if (($model = QuestionOption::findOne($id)) !== null) {
             return $model;
         }
 

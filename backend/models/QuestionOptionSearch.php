@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Qestion;
+use backend\models\QuestionOption;
 
 /**
- * QestionSearch represents the model behind the search form of `backend\models\Qestion`.
+ * QuestionOptionSearch represents the model behind the search form of `backend\models\QuestionOption`.
  */
-class QestionSearch extends Qestion
+class QuestionOptionSearch extends QuestionOption
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class QestionSearch extends Qestion
     public function rules()
     {
         return [
-            [['id', 'tests_id'], 'integer'],
-            [['text_qestion'], 'safe'],
+            [['id', 'qestion_id', 'correct_option'], 'integer'],
+            [['option_text'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class QestionSearch extends Qestion
      */
     public function search($params)
     {
-        $query = Qestion::find();
+        $query = QuestionOption::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +60,11 @@ class QestionSearch extends Qestion
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'tests_id' => $this->tests_id,
+            'qestion_id' => $this->qestion_id,
+            'correct_option' => $this->correct_option,
         ]);
 
-        $query->andFilterWhere(['like', 'text_qestion', $this->text_qestion]);
+        $query->andFilterWhere(['like', 'option_text', $this->option_text]);
 
         return $dataProvider;
     }

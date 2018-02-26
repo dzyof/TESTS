@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\QestionSearch */
+/* @var $searchModel backend\models\QuestionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Qestions';
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Qestion', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Question', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

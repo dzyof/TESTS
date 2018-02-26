@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Rezult;
-use frontend\models\RezultsOption;
+use frontend\models\RezultOption;
 
 use Yii;
 use yii\base\InvalidParamException;
@@ -18,8 +18,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
 use backend\models\Test;
-use backend\models\Qestion;
-use backend\models\QestionOption;
+use backend\models\Question;
+use backend\models\QuestionOption;
 
 use backend\models\MyModel as Model;
 
@@ -245,7 +245,7 @@ class SiteController extends Controller
 
 
         if ($modelPerson->load(Yii::$app->request->post())) {
-            if (isset($_POST['Qestion']) && $_POST['QestionOption']) {
+            if (isset($_POST['Question']) && $_POST['QuestionOption']) {
                 if (Yii::$app->user->id) {
                     $modelRezult->saveRezult();
                 }
@@ -257,8 +257,8 @@ class SiteController extends Controller
 
         return $this->render('test', [
             'modelPerson' => $modelPerson,
-            'modelsHouse' => (empty($modelsHouse)) ? [new Qestion] : $modelsHouse,
-            'modelsRoom' => (empty($modelsRoom)) ? [[new QestionOption]] : $modelsRoom,
+            'modelsHouse' => (empty($modelsHouse)) ? [new Question] : $modelsHouse,
+            'modelsRoom' => (empty($modelsRoom)) ? [[new QuestionOption]] : $modelsRoom,
 
         ]);
     }

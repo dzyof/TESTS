@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\QestionOptionSearch */
+/* @var $searchModel backend\models\QuestionOptionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Qestion Options';
+$this->title = 'Question Options';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qestion-option-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <p>
-        <?= Html::a('Create Qestion Option', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Question Option', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

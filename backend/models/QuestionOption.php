@@ -12,9 +12,9 @@ use Yii;
  * @property string $option_text
  * @property int $correct_option
  *
- * @property Qestion $qestion
+ * @property Question $qestion
  */
-class QestionOption extends \yii\db\ActiveRecord
+class QuestionOption extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -34,7 +34,7 @@ class QestionOption extends \yii\db\ActiveRecord
             [['qestion_id'], 'integer'],
             [['option_text'], 'string', 'max' => 255],
             [['correct_option'], 'string', 'max' => 255],
-            [['qestion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Qestion::className(), 'targetAttribute' => ['qestion_id' => 'id']],
+            [['qestion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Question::className(), 'targetAttribute' => ['qestion_id' => 'id']],
         ];
     }
 
@@ -45,7 +45,7 @@ class QestionOption extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'qestion_id' => 'Qestion ID',
+            'qestion_id' => 'Question ID',
             'option_text' => 'Варіант відповіді',
             'correct_option' => 'Чи це є правильний варіант',
         ];
@@ -56,6 +56,6 @@ class QestionOption extends \yii\db\ActiveRecord
      */
     public function getQestion()
     {
-        return $this->hasOne(Qestion::className(), ['id' => 'qestion_id']);
+        return $this->hasOne(Question::className(), ['id' => 'qestion_id']);
     }
 }

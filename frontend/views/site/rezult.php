@@ -12,8 +12,8 @@
                 <th>питання</th>
             </tr>
             <?php
-            if (isset($_POST['Qestion']) && $_POST['QestionOption']):
-                foreach ($_POST['QestionOption'] as $questionOption):
+            if (isset($_POST['Question']) && $_POST['QuestionOption']):
+                foreach ($_POST['QuestionOption'] as $questionOption):
                     foreach ($questionOption as $option)://
                         if ($option['option_text']) {
                             ?>
@@ -22,7 +22,7 @@
                                 <td> <?= $option['correct_option'] ?></td>
 
                             <?php
-                            foreach ($_POST['Qestion'] as  $qestion):
+                            foreach ($_POST['Question'] as  $qestion):
                                 if ($qestion['id'] == $option['qestion_id']) {
                                     ?>
                                     <td> <?= $qestion['text_qestion'] ?></td>

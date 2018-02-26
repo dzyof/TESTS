@@ -14,8 +14,8 @@ use backend\models\MyModel as Model;
 use yii\web\Controller;
 
 use backend\models\Test;
-use backend\models\Qestion;
-use backend\models\QestionOption;
+use backend\models\Question;
+use backend\models\QuestionOption;
 
 use backend\models\TestSearch;
 
@@ -63,21 +63,21 @@ class TestsController extends Controller
     public function actionCreate()
     {
         $modelTests = new Test;
-        $modelsQestion = [new Qestion];
-        $modelsQestionOption = [[new QestionOption]];
+        $modelsQestion = [new Question];
+        $modelsQestionOption = [[new QuestionOption]];
 
         if ($modelTests->load(Yii::$app->request->post())) {
-            $modelsQestion = Model::createMultiple(Qestion::classname());
+            $modelsQestion = Model::createMultiple(Question::classname());
             Model::loadMultiple($modelsQestion, Yii::$app->request->post());
 
             // validate Test and Qestions models
             $valid = $modelTests->validate();
             $valid = Model::validateMultiple($modelsQestion) && $valid;
-            if (isset($_POST['QestionOption'][0][0])) {
-                foreach ($_POST['QestionOption'] as $indexQestion => $qestionOptions) {
+            if (isset($_POST['QuestionOption'][0][0])) {
+                foreach ($_POST['QuestionOption'] as $indexQestion => $qestionOptions) {
                     foreach ($qestionOptions as $indexQestionOption => $qestionOption) {
-                        $data['QestionOption'] = $qestionOption;
-                        $modelQestionOption = new QestionOption;
+                        $data['QuestionOption'] = $qestionOption;
+                        $modelQestionOption = new QuestionOption;
                         $modelQestionOption->load($data);
                         $modelsQestionOption[$indexQestion][$indexQestionOption] = $modelQestionOption;
                         $valid = $modelQestionOption->validate();
@@ -128,8 +128,8 @@ class TestsController extends Controller
 
         return $this->render('create', [
             'modelTests' => $modelTests,
-            'modelsQestion' => (empty($modelsQestion)) ? [new Qestion] : $modelsQestion,
-            'modelsQestionOption' => (empty($modelsQestionOption)) ? [[new QestionOption]] : $modelsQestionOption,
+            'modelsQestion' => (empty($modelsQestion)) ? [new Question] : $modelsQestion,
+            'modelsQestionOption' => (empty($modelsQestionOption)) ? [[new QuestionOption]] : $modelsQestionOption,
         ]);
     }
 
@@ -159,7 +159,7 @@ class TestsController extends Controller
             $modelsQestionOption = [];
 
             $oldQestionIDs = ArrayHelper::map($modelsQestion, 'id', 'id');
-            $modelsQestion = Model::createMultiple(Qestion::classname(), $modelsQestion);
+            $modelsQestion = Model::createMultiple(Question::classname(), $modelsQestion);
             Model::loadMultiple($modelsQestion, Yii::$app->request->post());
             $deletedQestionIDs = array_diff($oldQestionIDs, array_filter(ArrayHelper::map($modelsQestion, 'id', 'id')));
 
@@ -168,12 +168,12 @@ class TestsController extends Controller
             $valid = Model::validateMultiple($modelsQestion) && $valid;
 
             $QestionOptionsIDs = [];
-            if (isset($_POST['QestionOption'][0][0])) {
-                foreach ($_POST['QestionOption'] as $indexQestion => $QestionOptions) {
+            if (isset($_POST['QuestionOption'][0][0])) {
+                foreach ($_POST['QuestionOption'] as $indexQestion => $QestionOptions) {
                     $QestionOptionsIDs = ArrayHelper::merge($QestionOptionsIDs, array_filter(ArrayHelper::getColumn($QestionOptions, 'id')));
                     foreach ($QestionOptions as $indexQestionOption => $QestionOption) {
-                        $data['QestionOption'] = $QestionOption;
-                        $modelQestionOption = (isset($QestionOption['id']) && isset($oldQestionOptions[$QestionOption['id']])) ? $oldQestionOptions[$QestionOption['id']] : new QestionOption;
+                        $data['QuestionOption'] = $QestionOption;
+                        $modelQestionOption = (isset($QestionOption['id']) && isset($oldQestionOptions[$QestionOption['id']])) ? $oldQestionOptions[$QestionOption['id']] : new QuestionOption;
                         $modelQestionOption->load($data);
                         $modelsQestionOption[$indexQestion][$indexQestionOption] = $modelQestionOption;
                         $valid = $modelQestionOption->validate();
@@ -189,11 +189,11 @@ class TestsController extends Controller
                 try {
                     if ($flag = $modelTests->save(false)) {
                         if (! empty($deletedQestionOptionsIDs)) {
-                            QestionOption::deleteAll(['id' => $deletedQestionOptionsIDs]);
+                            QuestionOption::deleteAll(['id' => $deletedQestionOptionsIDs]);
                         }
 
                         if (! empty($deletedQestionIDs)) {
-                            Qestion::deleteAll(['id' => $deletedQestionIDs]);
+                            Question::deleteAll(['id' => $deletedQestionIDs]);
                         }
 
                         foreach ($modelsQestion as $indexQestion => $modelQestion) {
@@ -231,8 +231,8 @@ class TestsController extends Controller
 
         return $this->render('update', [
             'modelPerson' => $modelTests,
-            'modelsHouse' => (empty($modelsQestion)) ? [new Qestion] : $modelsQestion,
-            'modelsRoom' => (empty($modelsQestionOption)) ? [[new QestionOption]] : $modelsQestionOption
+            'modelsHouse' => (empty($modelsQestion)) ? [new Question] : $modelsQestion,
+            'modelsRoom' => (empty($modelsQestionOption)) ? [[new QuestionOption]] : $modelsQestionOption
         ]);
     }
 

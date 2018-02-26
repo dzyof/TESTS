@@ -15,7 +15,7 @@ use Yii;
  * @property int $avarage_score
  * @property double $created_at
  *
- * @property Qestion[] $qestions
+ * @property Question[] $qestions
  */
 class Test extends \yii\db\ActiveRecord
 {
@@ -68,7 +68,7 @@ class Test extends \yii\db\ActiveRecord
      */
     public function getQestions()
     {
-        return $this->hasMany(Qestion::className(), ['tests_id' => 'id']);
+        return $this->hasMany(Question::className(), ['tests_id' => 'id']);
     }
 
     public function getRezults()

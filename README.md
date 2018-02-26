@@ -8,9 +8,15 @@
 
 1. Download the project
 3. Run next comand.</br>
-        composer update    - add all dependencies
+        composer update    - add all dependencies</br>
+        php init 
+        common/config/main-local.php
+        
+            'dsn' => 'mysql:host=localhost;dbname=YOUR DB',
+        
         yii migrate - creates a base </br>
         yii migrate --migrationPath=@yii/rbac/migrations</br>
         yii fill/user - creates a user and admin </br>
+        yii rbac/init - creates a rools for access in admin panel </br>
         
         /admin  - enter in admin panel       

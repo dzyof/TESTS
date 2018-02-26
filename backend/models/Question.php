@@ -13,9 +13,9 @@ use Yii;
  * @property string $text_qestion
  *
  * @property Test $tests
- * @property QestionOption[] $qestionOptions
+ * @property QuestionOption[] $qestionOptions
  */
-class Qestion extends \yii\db\ActiveRecord
+class Question extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -68,6 +68,6 @@ class Qestion extends \yii\db\ActiveRecord
 
     public function getOptions()
     {
-        return $this->hasMany(QestionOption::className(), ['qestion_id' => 'id']);
+        return $this->hasMany(QuestionOption::className(), ['qestion_id' => 'id']);
     }
 }

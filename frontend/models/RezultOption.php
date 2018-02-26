@@ -16,7 +16,7 @@ use Yii;
  *
  * @property Rezult $rezult
  */
-class RezultsOption extends \yii\db\ActiveRecord
+class RezultOption extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

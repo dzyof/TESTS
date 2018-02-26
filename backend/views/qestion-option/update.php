@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\QestionOption */
+/* @var $model backend\models\QuestionOption */
 
-$this->title = 'Update Qestion Option: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Qestion Options', 'url' => ['index']];
+$this->title = 'Update Question Option: {nameAttribute}';
+$this->params['breadcrumbs'][] = ['label' => 'Question Options', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

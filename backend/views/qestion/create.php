@@ -3,9 +3,9 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Qestion */
+/* @var $model backend\models\Question */
 
-$this->title = 'Create Qestion';
+$this->title = 'Create Question';
 $this->params['breadcrumbs'][] = ['label' => 'Qestions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

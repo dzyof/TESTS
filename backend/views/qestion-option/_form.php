@@ -1,12 +1,12 @@
 <?php
 
-use backend\models\Qestion;
+use backend\models\Question;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\QestionOption */
+/* @var $model backend\models\QuestionOption */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'qestion_id')->dropDownList(
-        ArrayHelper::map(Qestion::find()->all(), 'id', 'text_qestion'),
+        ArrayHelper::map(Question::find()->all(), 'id', 'text_qestion'),
         ['prompt' =>'Виберіть до якого питання' ]
     ) ?>
 

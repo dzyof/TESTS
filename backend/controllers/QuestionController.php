@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Qestion;
-use backend\models\QestionSearch;
+use backend\models\Question;
+use backend\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * QestionController implements the CRUD actions for Qestion model.
+ * QuestionController implements the CRUD actions for Question model.
  */
-class QestionController extends Controller
+class QuestionController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class QestionController extends Controller
     }
 
     /**
-     * Lists all Qestion models.
+     * Lists all Question models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new QestionSearch();
+        $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class QestionController extends Controller
     }
 
     /**
-     * Displays a single Qestion model.
+     * Displays a single Question model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class QestionController extends Controller
     }
 
     /**
-     * Creates a new Qestion model.
+     * Creates a new Question model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Qestion();
+        $model = new Question();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class QestionController extends Controller
     }
 
     /**
-     * Updates an existing Qestion model.
+     * Updates an existing Question model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class QestionController extends Controller
     }
 
     /**
-     * Deletes an existing Qestion model.
+     * Deletes an existing Question model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,15 +109,15 @@ class QestionController extends Controller
     }
 
     /**
-     * Finds the Qestion model based on its primary key value.
+     * Finds the Question model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Qestion the loaded model
+     * @return Question the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Qestion::findOne($id)) !== null) {
+        if (($model = Question::findOne($id)) !== null) {
             return $model;
         }
 

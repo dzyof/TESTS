@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 use backend\models\Test;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Qestion */
+/* @var $model backend\models\Question */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

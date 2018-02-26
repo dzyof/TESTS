@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\QestionOption */
+/* @var $model backend\models\QuestionOption */
 
-$this->title = 'Create Qestion Option';
-$this->params['breadcrumbs'][] = ['label' => 'Qestion Options', 'url' => ['index']];
+$this->title = 'Create Question Option';
+$this->params['breadcrumbs'][] = ['label' => 'Question Options', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qestion-option-create">

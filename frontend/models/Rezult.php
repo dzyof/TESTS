@@ -2,13 +2,13 @@
 
 namespace frontend\models;
 
-use backend\models\Qestion;
-use backend\models\QestionOption;
+use backend\models\Question;
+use backend\models\QuestionOption;
 use backend\models\Test;
 use common\models\User;
 use DateTime;
 
-use frontend\models\RezultsOption;
+use frontend\models\RezultOption;
 
 use Yii;
 
@@ -84,7 +84,7 @@ class Rezult extends \yii\db\ActiveRecord
     // старий варіант
     public function countRez($rezult)
     {
-        $mustBeConttest = Qestion::find()->where(['tests_id' => $rezult['test_id']])->count();
+        $mustBeConttest = Question::find()->where(['tests_id' => $rezult['test_id']])->count();
         $right = 0;
         $unright =0;
         $conttest = 0;
@@ -94,7 +94,7 @@ class Rezult extends \yii\db\ActiveRecord
             if ($i >=2) {
                 $qestAbsw = explode("/", $key);
                 var_dump($qestAbsw);
-                $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => 1])->all();
+                $test = QuestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => 1])->all();
                 if ($test[0]->option_text == $qestAbsw[1]) {
                     $right++;
                 } else {
@@ -131,16 +131,16 @@ class Rezult extends \yii\db\ActiveRecord
         $rezultId =  $modelRezult->getPrimaryKey();
 
        
-        if (isset($_POST['Qestion']) && $_POST['QestionOption']):
-                foreach ($_POST['QestionOption'] as $questionOption):
+        if (isset($_POST['Question']) && $_POST['QuestionOption']):
+                foreach ($_POST['QuestionOption'] as $questionOption):
                             foreach ($questionOption as $option)://
                                 if ($option['option_text']) {
-                                    $modelRezultsOption = new RezultsOption();//
+                                    $modelRezultsOption = new RezultOption();//
                                     $modelRezultsOption->rezult_id = $rezultId;
                                     $modelRezultsOption->questions_answer = $option['option_text'];
                                     $modelRezultsOption->right_answer = 'text true ansver';
                                     $modelRezultsOption->status =  $option['correct_option'];
-                                    foreach ($_POST['Qestion'] as  $qestion):
+                                    foreach ($_POST['Question'] as  $qestion):
                                            if ($qestion['id'] == $option['qestion_id']) {
                                                $modelRezultsOption->question  = $qestion['text_qestion'];
                                            }

@@ -2,11 +2,11 @@
 
 namespace frontend\controllers;
 
-use backend\models\Qestion;
-use backend\models\QestionOption;
+use backend\models\Question;
+use backend\models\QuestionOption;
 use DateTime;
 use frontend\models\Rezult;
-use frontend\models\RezultsOption;
+use frontend\models\RezultOption;
 use Yii;
 use yii\data\ActiveDataProvider;
 
@@ -23,7 +23,7 @@ class RezultController extends \yii\web\Controller
 
     public function actionOption($id)
     {
-        $model = RezultsOption::find()->where(['rezult_id' => $id ])->all();
+        $model = RezultOption::find()->where(['rezult_id' => $id ])->all();
         return $this->render('option', [
             'model' => $model,
         ]);

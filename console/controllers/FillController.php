@@ -5,8 +5,8 @@ namespace console\controllers;
 use common\models\User;
 use yii\console\ExitCode;
 use backend\models\Test;
-use backend\models\Qestion;
-use backend\models\QestionOption;
+use backend\models\Question;
+use backend\models\QuestionOption;
 
 class FillController extends \yii\console\Controller
 {
