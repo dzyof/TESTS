@@ -4,7 +4,7 @@
 
 use yii\helpers\Url;
 
-$this->title = 'Tests system'
+$this->title = 'Test system'
 
 ?>
 <div class="site-index">
@@ -15,9 +15,7 @@ $this->title = 'Tests system'
             <tr>
                 <th>#</th>
                 <th>назва тесту</th>
-                <th>час на проходженян</th>
-<!--                <th>Кількість проходжень</th>-->
-<!--                <th>Середня оцінка</th>-->
+                <th>час на проходження</th>
             </tr>
 
             <?php
@@ -31,8 +29,6 @@ $this->title = 'Tests system'
                     </a>
 
                 <td><?= $test->time_passing ?>  хв.</td>
-<!--                <td>--><?//= $test->number_passing?><!--</td>-->
-<!--                <td>--><?//= $test->avarage_score?><!--</td>-->
             </tr>
 
             <?php

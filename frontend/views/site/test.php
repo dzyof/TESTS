@@ -11,12 +11,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
     if (Yii::$app->user->id == false):
-        echo  Yii::$app->session->setFlash('error', 'Для збереження результатів проходження тесту - порібно залогінитися на сайті');
+        echo  Yii::$app->session->setFlash('error', 'Для збереження результатів проходження тесту - потрібно залогінитися на сайті');
     endif;
 ?>
 <div class="tests-update">
     <?= $this->render('_form', [
-//        'model' => $model,
         'modelPerson' => $modelPerson,
         'modelsHouse' => $modelsHouse,
         'modelsRoom' => $modelsRoom,

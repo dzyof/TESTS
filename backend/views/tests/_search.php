@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\TestsSearch */
+/* @var $model backend\models\TestSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -25,7 +25,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'avarage_score') ?>
 
-    <?php // echo $form->field($model, 'created_at')?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\models\Tests;
+use backend\models\Test;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Qestion */
@@ -16,8 +16,8 @@ use backend\models\Tests;
 
 
     <?= $form->field($model, 'tests_id')->dropDownList(
-           ArrayHelper::map(Tests::find()->all(), 'id', 'name_tests'),
-           ['prompt' =>'Select Tests' ]
+           ArrayHelper::map(Test::find()->all(), 'id', 'name_tests'),
+           ['prompt' =>'Select Test' ]
     ) ?>
 
     <?= $form->field($model, 'text_qestion')->textInput(['maxlength' => true]) ?>

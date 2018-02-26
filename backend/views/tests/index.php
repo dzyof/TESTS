@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\TestsSearch */
+/* @var $searchModel backend\models\TestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Тест';
@@ -24,14 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-//            'id',
             'name_tests',
             'time_passing',
-//            'number_passing',
-//            'avarage_score',
-            //'created_at',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

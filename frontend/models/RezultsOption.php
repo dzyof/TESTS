@@ -33,8 +33,8 @@ class RezultsOption extends \yii\db\ActiveRecord
     {
         return [
             [['rezult_id', 'question', 'questions_answer', 'right_answer', 'status'], 'required'],
-//            [['rezult_id', 'status'], 'integer'],
-//            [['question', 'questions_answer', 'right_answer'], 'string', 'max' => 255],
+            [['rezult_id', 'status'], 'integer'],
+            [['question', 'questions_answer', 'right_answer'], 'string', 'max' => 255],
             [['rezult_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rezult::className(), 'targetAttribute' => ['rezult_id' => 'id']],
         ];
     }
@@ -50,15 +50,7 @@ class RezultsOption extends \yii\db\ActiveRecord
             'question' => 'Question',
             'questions_answer' => 'Questions Answer',
             'right_answer' => 'Right Answer',
-//            'status' => 'Status',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-//    public function getRezult()
-//    {
-//        return $this->hasOne(Rezult::className(), ['id' => 'rezult_id']);
-//    }
 }

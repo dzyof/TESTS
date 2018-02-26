@@ -5,11 +5,10 @@
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
-$this->title = 'Tests system'
+$this->title = 'Test system'
 
 ?>
 <div class="site-index">
-
     <div class="bs-example">
         <table class="table table-striped">
             <thead>
@@ -17,8 +16,6 @@ $this->title = 'Tests system'
                 <th>ІD тесту що проходився</th>
                 <th>ід користувача який проходив тест</th>
                 <th>Дата проходження</th>
-<!--                <th>Кількість правильних відповідей</th>-->
-<!--                <th>Кількість неправильних відповідей</th>-->
             </tr>
             <?php
                         foreach ($model as $test) {
@@ -32,11 +29,7 @@ $this->title = 'Tests system'
                                 </td>
                                     <td> <?= $test->user_id ?></td>
                                     <td> <?= $test->data_pass ?></td>
-
-<!--                                <td>--><?//= $test->correct_unswer?><!-- </td>-->
-<!--                                <td>--><?//= $test->wrong_unswer?><!--</td>-->
                             </tr>
-
                             <?php
                         }
                         ?>
@@ -44,6 +37,4 @@ $this->title = 'Tests system'
             </tbody>
         </table>
     </div>
-
-
 </div>

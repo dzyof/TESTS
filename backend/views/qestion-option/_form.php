@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-<!--    --><?//= $form->field($model, 'qestion_id')->textInput()?>
-
     <?= $form->field($model, 'qestion_id')->dropDownList(
         ArrayHelper::map(Qestion::find()->all(), 'id', 'text_qestion'),
         ['prompt' =>'Виберіть до якого питання' ]

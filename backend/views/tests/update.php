@@ -3,12 +3,12 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Tests */
+/* @var $model backend\models\Test */
 
-$this->title = 'Update Tests: '.$modelPerson->name_tests ;
-$this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['index']];
+$this->title = 'Редагувати тест '.$modelPerson->name_tests ;
+$this->params['breadcrumbs'][] = ['label' => 'Тест', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редагувати';
 ?>
 <div class="tests-update">
 

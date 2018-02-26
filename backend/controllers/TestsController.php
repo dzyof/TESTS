@@ -13,24 +13,24 @@ use backend\models\MyModel as Model;
 
 use yii\web\Controller;
 
-use backend\models\Tests;
+use backend\models\Test;
 use backend\models\Qestion;
 use backend\models\QestionOption;
 
-use backend\models\TestsSearch;
+use backend\models\TestSearch;
 
 /**
- * DynamicformDemo3Controller implements the CRUD actions for Tests model.
+ * DynamicformDemo3Controller implements the CRUD actions for Test model.
  */
 class TestsController extends Controller
 {
     /**
-     * Lists all Tests models.
+     * Lists all Test models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TestsSearch();
+        $searchModel = new TestSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -40,7 +40,7 @@ class TestsController extends Controller
     }
 
     /**
-     * Displays a single Tests model.
+     * Displays a single Test model.
      * @param integer $id
      * @return mixed
      */
@@ -56,13 +56,13 @@ class TestsController extends Controller
     }
 
     /**
-     * Creates a new Tests model.
+     * Creates a new Test model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $modelTests = new Tests;
+        $modelTests = new Test;
         $modelsQestion = [new Qestion];
         $modelsQestionOption = [[new QestionOption]];
 
@@ -70,7 +70,7 @@ class TestsController extends Controller
             $modelsQestion = Model::createMultiple(Qestion::classname());
             Model::loadMultiple($modelsQestion, Yii::$app->request->post());
 
-            // validate Tests and Qestions models
+            // validate Test and Qestions models
             $valid = $modelTests->validate();
             $valid = Model::validateMultiple($modelsQestion) && $valid;
             if (isset($_POST['QestionOption'][0][0])) {
@@ -134,7 +134,7 @@ class TestsController extends Controller
     }
 
     /**
-     * Updates an existing Tests model.
+     * Updates an existing Test model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -163,7 +163,7 @@ class TestsController extends Controller
             Model::loadMultiple($modelsQestion, Yii::$app->request->post());
             $deletedQestionIDs = array_diff($oldQestionIDs, array_filter(ArrayHelper::map($modelsQestion, 'id', 'id')));
 
-            // validate Tests and Qestions models
+            // validate Test and Qestions models
             $valid = $modelTests->validate();
             $valid = Model::validateMultiple($modelsQestion) && $valid;
 
@@ -238,7 +238,7 @@ class TestsController extends Controller
     }
 
     /**
-     * Deletes an existing Tests model.
+     * Deletes an existing Test model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -254,15 +254,15 @@ class TestsController extends Controller
     }
 
     /**
-     * Finds the Tests model based on its primary key value.
+     * Finds the Test model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tests the loaded model
+     * @return Test the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tests::findOne($id)) !== null) {
+        if (($model = Test::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -1,5 +1,5 @@
 
-<h1> Результати  проходження <?php echo $_POST['Tests']['name_tests']; ?>  тесту </h1>
+<h1> Результати  проходження <?php echo $_POST['Test']['name_tests']; ?>  тесту </h1>
 
 <div class="site-index">
 
@@ -12,8 +12,6 @@
                 <th>питання</th>
             </tr>
             <?php
-
-
             if (isset($_POST['Qestion']) && $_POST['QestionOption']):
                 foreach ($_POST['QestionOption'] as $questionOption):
                     foreach ($questionOption as $option)://
@@ -38,10 +36,6 @@
                 endforeach;
             endif;
                 ?>
-                <?php
-
-            ?>
-
             </tbody>
         </table>
     </div>

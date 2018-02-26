@@ -12,7 +12,7 @@ use Yii;
  * @property int $tests_id
  * @property string $text_qestion
  *
- * @property Tests $tests
+ * @property Test $tests
  * @property QestionOption[] $qestionOptions
  */
 class Qestion extends \yii\db\ActiveRecord
@@ -34,7 +34,7 @@ class Qestion extends \yii\db\ActiveRecord
             [['tests_id', 'text_qestion'], 'required'],
             [['tests_id'], 'integer'],
             [['text_qestion'], 'string', 'max' => 255],
-            [['tests_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tests::className(), 'targetAttribute' => ['tests_id' => 'id']],
+            [['tests_id'], 'exist', 'skipOnError' => true, 'targetClass' => Test::className(), 'targetAttribute' => ['tests_id' => 'id']],
         ];
     }
 
@@ -63,7 +63,7 @@ class Qestion extends \yii\db\ActiveRecord
      */
     public function getTests()
     {
-        return $this->hasOne(Tests::className(), ['id' => 'tests_id']);
+        return $this->hasOne(Test::className(), ['id' => 'tests_id']);
     }
 
     public function getOptions()

@@ -20,11 +20,9 @@ use wbraganca\dynamicform\DynamicFormWidget;
                 echo Html::activeHiddenInput($modelPerson, "id");
             }
             ?>
-<!--            --><?//= $form->field($modelPerson, 'name_tests')->textInput(['maxlength' => true])?>
         </div>
         <div class="col-sm-6">
             <?= Html::activeHiddenInput($modelPerson, "time_passing"); ?>
-<!--            --><?//= $form->field($modelPerson, 'time_passing')->textInput(['maxlength' => true])?>
         </div>
     </div>
     <div class="padding-v-md">
@@ -62,7 +60,6 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelHouse, "[{$indexHouse}]text_qestion");
                     }
                     ?>
-<!--                    --><?//= $form->field($modelHouse, "[{$indexHouse}]text_qestion")->label($modelHouse->text_qestion)->textInput(['maxlength' => true])?>
                     <?= $this->render('_form-rooms', [
                         'form' => $form,
                         'indexHouse' => $indexHouse,

@@ -4,7 +4,7 @@ namespace frontend\models;
 
 use backend\models\Qestion;
 use backend\models\QestionOption;
-use backend\models\Tests;
+use backend\models\Test;
 use common\models\User;
 use DateTime;
 
@@ -22,7 +22,7 @@ use Yii;
 // * @property int $correct_unswer
  * @property int $wrong_unswer
  *
- * @property Tests $test
+ * @property Test $test
  * @property User $user
  */
 class Rezult extends \yii\db\ActiveRecord
@@ -44,7 +44,7 @@ class Rezult extends \yii\db\ActiveRecord
             [['user_id', 'test_id' ], 'required'],
             [['user_id', 'test_id'], 'integer'],
             [['data_pass'], 'safe'],
-            [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tests::className(), 'targetAttribute' => ['test_id' => 'id']],
+            [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Test::className(), 'targetAttribute' => ['test_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -69,7 +69,7 @@ class Rezult extends \yii\db\ActiveRecord
      */
     public function getTest()
     {
-        return $this->hasOne(Tests::className(), ['id' => 'test_id']);
+        return $this->hasOne(Test::className(), ['id' => 'test_id']);
     }
 
     /**
@@ -94,9 +94,6 @@ class Rezult extends \yii\db\ActiveRecord
             if ($i >=2) {
                 $qestAbsw = explode("/", $key);
                 var_dump($qestAbsw);
-//                    echo $qestAbsw[0]."__>";
-//                    echo $qestAbsw[1]."</br>";
-//                if ($qestAbsw[0] != '_csrf-frontend' || $qestAbsw[0] != 'user_id') {
                 $test = QestionOption::find()->where(['qestion_id' => $qestAbsw[0]])->andWhere(['correct_option' => 1])->all();
                 if ($test[0]->option_text == $qestAbsw[1]) {
                     $right++;
@@ -127,8 +124,8 @@ class Rezult extends \yii\db\ActiveRecord
             $modelRezult->user_id =Yii::$app->user->id ;
         }
         $modelRezult->data_pass  = $date->format('Y-m-d H:i:s');
-        if (isset($_POST['Tests']['id'])) {
-            $modelRezult->test_id = $_POST['Tests']['id'];
+        if (isset($_POST['Test']['id'])) {
+            $modelRezult->test_id = $_POST['Test']['id'];
         }
         $modelRezult->save();
         $rezultId =  $modelRezult->getPrimaryKey();

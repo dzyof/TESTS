@@ -17,7 +17,7 @@ use Yii;
  *
  * @property Qestion[] $qestions
  */
-class Tests extends \yii\db\ActiveRecord
+class Test extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

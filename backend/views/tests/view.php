@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Qestion */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Qestions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Питання', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qestion-view">
@@ -33,9 +33,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'time_passing',
         ],
     ]) ?>
-
-
-
-
-
 </div>

@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Tests */
+/* @var $model backend\models\Test */
 
 $this->title = 'Створити тест';
-$this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Test', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tests-create">
@@ -22,10 +22,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<!---->
-<?//= $this->render('_form', [
-//    'model' => $model,
-//    'modelTests'  =>$modelTests,
-//    'modelsQestion' =>$modelsQestion,
-//    'modelsQestionOption' =>$modelsQestionOption,
-//])?>

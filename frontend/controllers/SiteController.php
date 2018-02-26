@@ -17,13 +17,13 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
-use backend\models\Tests;
+use backend\models\Test;
 use backend\models\Qestion;
 use backend\models\QestionOption;
 
 use backend\models\MyModel as Model;
 
-use backend\models\TestsSearch as PersonQuery;
+use backend\models\TestSearch as PersonQuery;
 
 /**
  * Site controller
@@ -84,7 +84,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $tests = Tests::find()->all();
+        $tests = Test::find()->all();
 
         return $this->render('index', [
             'tests' => $tests,
@@ -261,21 +261,6 @@ class SiteController extends Controller
             'modelsRoom' => (empty($modelsRoom)) ? [[new QestionOption]] : $modelsRoom,
 
         ]);
-
-//        $test = Qestion::find()->where(['tests_id' => $id])->all();
-//
-//        $options =[];
-//        foreach ($test as $tes) {
-//            array_push($options, QestionOption::find()->where(['qestion_id' => $tes->id])->all());
-//        }
-//        $timePassing = Tests::find()->where(['id' => $id])->one();
-//        $timePass = $timePassing->time_passing;
-//
-//        return $this->render('test', [
-//            'test' => $test,
-//            'options' => $options,
-//            'timePass' => $timePass
-//        ]);
     }
 
     public function actionRezult()
@@ -286,7 +271,7 @@ class SiteController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Tests::findOne($id)) !== null) {
+        if (($model = Test::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

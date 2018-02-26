@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Tests;
+use backend\models\Test;
 
 /**
- * TestsSearch represents the model behind the search form of `backend\models\Tests`.
+ * TestSearch represents the model behind the search form of `backend\models\Test`.
  */
-class TestsSearch extends Tests
+class TestSearch extends Test
 {
     /**
      * @inheritdoc
@@ -42,7 +42,7 @@ class TestsSearch extends Tests
      */
     public function search($params)
     {
-        $query = Tests::find();
+        $query = Test::find();
 
         // add conditions that should always apply here
 

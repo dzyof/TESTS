@@ -4,7 +4,7 @@ namespace console\controllers;
 
 use common\models\User;
 use yii\console\ExitCode;
-use backend\models\Tests;
+use backend\models\Test;
 use backend\models\Qestion;
 use backend\models\QestionOption;
 
@@ -35,7 +35,7 @@ class FillController extends \yii\console\Controller
     {
 
 
-//        $test = new Tests();
+//        $test = new Test();
 //        $test->id = 4;
 //        $test->name_tests = 'Філософія2';
 //        $test->time_passing = 1;

@@ -20,7 +20,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>Система тестування</title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'Система тестування',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,18 +37,18 @@ AppAsset::register($this);
     ]);
     $menuItems = [
 //        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Tests', 'url' => ['/tests/index']],
+        ['label' => 'Тести', 'url' => ['/tests/index']],
 //        ['label' => 'Qestion', 'url' => ['/qestion/index']],
 //        ['label' => 'Option', 'url' => ['/qestion-option/index']],
 
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Ввійти', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Виийти (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
