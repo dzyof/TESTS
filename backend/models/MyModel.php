@@ -37,9 +37,7 @@ class MyModel extends Model
                 }
             }
         }
-
         unset($model, $formName, $post);
-
         return $models;
     }
 }

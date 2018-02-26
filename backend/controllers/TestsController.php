@@ -218,8 +218,7 @@ class TestsController extends Controller
                         }
                     }
                     if ($flag) {
-                        $transaction->commit();
-//                        return $this->redirect(['view', 'id' => $modelTests->id]);
+                        $transaction->commit();//
                         return $this->redirect(['view', 'id' => $modelTests->id]);
                     } else {
                         $transaction->rollBack();
