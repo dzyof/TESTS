@@ -9,6 +9,8 @@ use frontend\models\Rezult;
 use frontend\models\RezultOption;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
+
 
 class RezultController extends \yii\web\Controller
 {
@@ -16,8 +18,13 @@ class RezultController extends \yii\web\Controller
     {
         $model = Rezult::find()->orderBy('id DESC')->all();
 
+        $model2 = Rezult::find();
+        $pages = new Pagination(['totalCount' => $model2->count(), 'pageSize'=>5]);
+        $pages->pageSizeParam = false;
+
         return $this->render('index', [
             'model' => $model,
+            'pages' => $pages,
         ]);
     }
 

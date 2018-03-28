@@ -34,10 +34,14 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         echo Html::activeHiddenInput($modelRoom, "[{$indexHouse}][{$indexRoom}]correct_option");
                     }
                     ?>
-                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(['value' =>$modelRoom->option_text]); ?>
+                    <?= $form->field($modelRoom, "[{$indexHouse}][{$indexRoom}]option_text")->label($modelRoom->option_text)->checkbox(); ?>
+<!--                    //['value' =>$modelRoom->option_text]-->
                     </td>
             </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
+
 <?php DynamicFormWidget::end(); ?>
+
+
