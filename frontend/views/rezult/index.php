@@ -5,6 +5,9 @@
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
+use yii\data\Pagination;
+
+
 $this->title = 'Test system'
 
 ?>
@@ -20,7 +23,6 @@ $this->title = 'Test system'
             <?php
                         foreach ($model as $test) {
                             ?>
-
                             <tr>
                                 <td>
                                 <a href="<?= Url::to(['rezult/option', 'id'=> $test->id]) ?>">
@@ -33,8 +35,14 @@ $this->title = 'Test system'
                             <?php
                         }
                         ?>
-
             </tbody>
         </table>
     </div>
+</div>
+<div class="ddd">
+        <?php
+        echo \yii\widgets\LinkPager::widget([
+            'pagination'=>$pages,
+        ]);
+        ?>
 </div>
