@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -51,6 +52,9 @@ AppAsset::register($this);
 //        ['label' => 'About', 'url' => ['/site/about']],
 //        ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
+
+
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Реєстрація', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Ввійти', 'url' => ['/site/login']];
@@ -63,6 +67,8 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+        $menuItems[] = ['label' => 'Особистий кабінет', 'url' => ['/profile/index']];
+
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -72,7 +78,7 @@ AppAsset::register($this);
     ?>
 
 
-    
+
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
