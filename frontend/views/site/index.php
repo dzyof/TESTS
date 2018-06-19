@@ -39,24 +39,24 @@ $this->title = 'Test system'
         </table>
     </div>
 
-    <div id="accordion">
-
-        <?php
-        foreach ($tests as $test) {
-            ?>
-            <div class="group">
-               <h3> <?= $test->name_tests ?> Час для проходження тесту <?= $test->time_passing ?>хв. </h3>
-                <div>
-                    <a href="<?= Url::to(['site/test', 'id'=> $test->id]) ?>"> Розпочати тест</a>
-                    <p> Тут може бути опис для кожного тесту</p>
-                </div>
-            </div>
-
-            <?php
-        }
-        ?>
-
-
-
-
-</div>
+<!--    <div id="accordion">-->
+<!---->
+<!--        --><?php
+//        foreach ($tests as $test) {
+//            ?>
+<!--            <div class="group">-->
+<!--               <h3> --><?//= $test->name_tests ?><!-- Час для проходження тесту --><?//= $test->time_passing ?><!--хв. </h3>-->
+<!--                <div>-->
+<!--                    <a href="--><?//= Url::to(['site/test', 'id'=> $test->id]) ?><!--"> Розпочати тест</a>-->
+<!--                    <p> Тут може бути опис для кожного тесту</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            --><?php
+//        }
+//        ?>
+<!---->
+<!---->
+<!---->
+<!---->
+<!--</div>-->
