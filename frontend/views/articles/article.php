@@ -45,7 +45,7 @@
 <!-- end bottom comment-->
 <!---->
 <?php //if(!Yii::$app->user->isGuest):?>
-<!--    <div class="leave-comment"><!--leave comment-->-->
+<!--    <div class="leave-comment"><!--leave comment-->
 <!--        <h4>Leave a reply</h4>-->
 <!--        --><?php //if(Yii::$app->session->getFlash('comment')):?>
 <!--            <div class="alert alert-success" role="alert">-->

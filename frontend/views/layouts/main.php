@@ -70,7 +70,7 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
-        $menuItems[] = ['label' => 'Особистий кабінет', 'url' => ['/profile/index']];
+//        $menuItems[] = ['label' => 'Особистий кабінет', 'url' => ['/profile/index']];
 
     }
     echo Nav::widget([
