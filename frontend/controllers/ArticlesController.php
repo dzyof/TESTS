@@ -6,6 +6,7 @@ use frontend\models\Comment;
 use Yii;
 use backend\models\Article;
 use backend\models\ArticleSearch;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,14 +33,17 @@ class ArticlesController extends Controller
     public function actionArticle($id)
     {
         $model = Article::find()->where(['id' => $id ])->all();
-        $comments = Comment::find()->where(['article_id' => $id ])->all();
-
+        $comments = Comment::find()->where(['article_id' => $id ])->andWhere(['comment_id' => Null])->all();
 
         return $this->render('article', [
             'model' => $model,
-            'comments'=> $comments
+            'comments'=> $comments,
+//            'comments_com'=>$comments_com
         ]);
     }
+
+
+
 
 
 

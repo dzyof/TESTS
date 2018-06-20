@@ -1,3 +1,5 @@
+
+
 <div class="site-index">
     <div class="bs-example">
         <table class="table table-striped">
@@ -23,7 +25,6 @@
 
 
 <?php if(!empty($comments)):?>
-
     <?php foreach($comments as $comment):?>
         <div class="bottom-comment"><!--bottom comment-->
             <div class="comment-img">
@@ -37,9 +38,9 @@
                 <p class="para"><?= $comment->text; ?></p>
             </div>
         </div>
+       <?php $article->subComment($comment->id); ?>
     <?php endforeach;?>
 <?php endif;?>
-
 
 <!-- end bottom comment-->
 <!---->

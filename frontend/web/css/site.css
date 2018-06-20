@@ -118,3 +118,12 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.comment-img img {
+    width: 100px;
+    height: 100px;
+}
+
+.sub-bottom-comment{
+    margin-left: 100px;
+}
