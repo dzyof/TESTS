@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Comment;
+use frontend\models\CommentForm;
 use Yii;
 use backend\models\Article;
 use backend\models\ArticleSearch;
@@ -30,23 +31,30 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function actionArticle($id)
+    public function actionArticle($id, $comment_id = null)
     {
+        $commentForm = new CommentForm();
+
+        if(Yii::$app->request->isPost)
+        {
+            $commentForm->load(Yii::$app->request->post());
+            $commentForm->saveComment($id,$comment_id);
+            $this->refresh();
+//            if($commentForm->saveComment($id))
+//            {
+//                Yii::$app->getSession()->setFlash('comment', 'Ваш коментарь успішно додано');
+//            }
+        }
+
         $model = Article::find()->where(['id' => $id ])->all();
-        $comments = Comment::find()->where(['article_id' => $id ])->andWhere(['comment_id' => Null])->all();
+        $comments = Comment::find()->where(['article_id' => $id ])->andWhere(['comment_id' => Null])->orderBy(['id' => SORT_DESC])->all();
 
         return $this->render('article', [
-            'model' => $model,
-            'comments'=> $comments,
+            'model'      => $model,
+            'comments'   => $comments,
+            'commentForm'=>$commentForm
 //            'comments_com'=>$comments_com
         ]);
     }
-
-
-
-
-
-
-
 
 }
