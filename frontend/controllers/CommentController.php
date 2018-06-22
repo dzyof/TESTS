@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\CommentForm;
 use Yii;
 use backend\models\Comment;
 use backend\models\CommentSearch;
@@ -82,16 +83,21 @@ class CommentController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $article_id = null )
+    public function actionUpdate($id, $article_id = null, $comment_text  = null )
     {
-        $model = $this->findModel($id);
 
-        $model->text = 'default';
+        if (Yii::$app->request->isPost) {
+            $commentForm = new CommentForm();
 
-        $model->save();
+            $commentForm->load(Yii::$app->request->post());
+            $commentForm->updateComment($id);
+            $this->refresh();
+//            if($commentForm->saveComment($id))
+//            {
+//                Yii::$app->getSession()->setFlash('comment', 'Ваш коментарь успішно додано');
+//            }
+        }
         return $this->redirect(['articles/article?id='. $article_id]);
-
-
     }
 
 

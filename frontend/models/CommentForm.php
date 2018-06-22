@@ -5,6 +5,8 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 
+
+
 class CommentForm extends Model
 {
     public $comment;
@@ -27,4 +29,5 @@ class CommentForm extends Model
         $comment->status = 0;
         return $comment->save();
     }
+
 }
