@@ -60,10 +60,20 @@
         </div>
 
         <p>
+        <p>
+
+            <?= Html::a( $comment->like.'  Вподобати' , ['comment/like', 'id' => $comment->id, 'article_id'=>$article->id ], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+
             <a class="btn btn-primary" data-toggle="collapse" href="#<?= $comment->id; ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Залишити коментарій
             </a>
-
+        <?php if(!Yii::$app->user->isGuest && Yii::$app->user->id == $comment->user_id):?>
             <?= Html::a('Delete', ['comment/delete', 'id' => $comment->id, 'article_id'=>$article->id ], [
                 'class' => 'btn btn-danger',
                 'data' => [
@@ -75,7 +85,7 @@
 <!--            <a class="btn btn-primary" data-toggle="collapse" href="#update--><?//= $comment->id; ?><!--" role="button" aria-expanded="false" aria-controls="collapseExample">-->
 <!--                Редагувати коментар-->
 <!--            </a>-->
-
+        <?php endif;?>
         </p>
         <div class="collapse" id="<?= $comment->id; ?>">
             <div class="card card-body">

@@ -86,19 +86,24 @@ class CommentController extends Controller
     {
         $model = $this->findModel($id);
 
-        var_dump( Yii::$app->request->post());
-//        var_dump( $model);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->text = 'default';
 
-            var_dump(123);
+        $model->save();
+        return $this->redirect(['articles/article?id='. $article_id]);
 
-            return $this->redirect(['articles/article?id='. $article_id]);
-        }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
+
+
+    public function actionLike($id, $article_id = null )
+    {
+        $model = $this->findModel($id);
+        $model->like += 1;
+        $model->save();
+
+         return $this->redirect(['articles/article?id='. $article_id]);
+    }
+
 
     /**
      * Deletes an existing Comment model.
