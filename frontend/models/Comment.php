@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use backend\models\Article;
 use Yii;
 use yii\web\User;
 
@@ -39,8 +40,8 @@ class Comment extends \yii\db\ActiveRecord
         return [
             [['user_id', 'article_id', 'status'], 'integer'],
             [['text'], 'string', 'max' => 255],
-            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => 'classes', 'targetAttribute' => ['article_id' => 'id']], // Article::className()
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+//            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::className(), 'targetAttribute' => ['article_id' => 'id']], //
+//            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -59,41 +60,6 @@ class Comment extends \yii\db\ActiveRecord
         ];
     }
 
-//    /**
-//     * @return \yii\db\ActiveQuery
-//     */
-//    public function getArticle()
-//    {
-//        return $this->hasOne(Article::className(), ['id' => 'article_id']);
-//    }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
 
-    public function getDate()
-    {
-        return Yii::$app->formatter->asDate($this->date);
-    }
-    
-    public function isAllowed()
-    {
-        return $this->status;
-    }
-
-    public function allow()
-    {
-        $this->status = self::STATUS_ALLOW;
-        return $this->save(false);
-    }
-
-    public function disallow()
-    {
-        $this->status = self::STATUS_DISALLOW;
-        return $this->save(false);
-    }
 }

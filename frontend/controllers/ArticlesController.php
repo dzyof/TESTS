@@ -57,4 +57,22 @@ class ArticlesController extends Controller
         ]);
     }
 
+    public function actionRemuveComment($id)
+    {
+
+
+        $model = Article::find()->where(['id' => $id ])->all();
+        $comments = Comment::find()->where(['article_id' => $id ])->andWhere(['comment_id' => Null])->orderBy(['id' => SORT_DESC])->all();
+        $commentForm = new CommentForm();
+
+        return $this->render('article', [
+            'model'      => $model,
+            'comments'   => $comments,
+            'commentForm'=>$commentForm
+//            'comments_com'=>$comments_com
+        ]);
+    }
+
+
+
 }

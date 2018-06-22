@@ -17,16 +17,14 @@ class CommentForm extends Model
         ];
     }
 
-    public function saveComment($article_id)
+    public function saveComment($article_id, $comment_id = null)
     {
         $comment = new Comment;
         $comment->text = $this->comment;
         $comment->user_id = Yii::$app->user->id;
         $comment->article_id = $article_id;
-        $comment->comment_id = 1 ;// савити ід коментаря
+        $comment->comment_id = $comment_id ;// савити ід коментаря
         $comment->status = 0;
-        $comment->date = date('Y-m-d');
         return $comment->save();
-
     }
 }

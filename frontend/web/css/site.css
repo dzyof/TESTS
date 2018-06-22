@@ -127,3 +127,16 @@ a.desc:after {
 .sub-bottom-comment{
     margin-left: 100px;
 }
+
+.comment-img,
+.comment-text {
+    background-color: gainsboro;
+    border: black;
+    border-radius: 20px;
+    padding-top: 10px;
+}
+
+.comment-img {
+    margin-top: 10px;
+}
+

@@ -23,6 +23,26 @@
     </div>
 </div>
 
+<?php if(!Yii::$app->user->isGuest):?>
+    <div class="leave-comment">
+        <h4>Залиште ваш коментарій</h4>
+        <?php if(Yii::$app->session->getFlash('comment')):?>
+            <div class="alert alert-success" role="alert">
+                <?= Yii::$app->session->getFlash('comment'); ?>
+            </div>
+        <?php endif;?>
+        <?php $form = \yii\widgets\ActiveForm::begin([
+            'action'=>['articles/article', 'id'=>$article->id],
+            'options'=>['class'=>'form-horizontal contact-form', 'role'=>'form']])?>
+        <div class="form-group">
+            <div class="col-md-12">
+                <?= $form->field($commentForm, 'comment')->textarea(['class'=>'form-control','placeholder'=>'Write Message'])->label(false)?>
+            </div>
+        </div>
+        <button type="submit" class="btn send-btn">Post Comment</button>
+        <?php \yii\widgets\ActiveForm::end();?>
+    </div>
+<?php endif;?>
 
 <?php if(!empty($comments)):?>
     <?php foreach($comments as $comment):?>
@@ -38,29 +58,76 @@
                 <p class="para"><?= $comment->text; ?></p>
             </div>
         </div>
-       <?php $article->subComment($comment->id); ?>
-    <?php endforeach;?>
-<?php endif;?>
 
-<!-- end bottom comment-->
-<!---->
-<?php //if(!Yii::$app->user->isGuest):?>
-<!--    <div class="leave-comment"><!--leave comment-->
-<!--        <h4>Leave a reply</h4>-->
-<!--        --><?php //if(Yii::$app->session->getFlash('comment')):?>
-<!--            <div class="alert alert-success" role="alert">-->
-<!--                --><?//= Yii::$app->session->getFlash('comment'); ?>
-<!--            </div>-->
-<!--        --><?php //endif;?>
-<!--        --><?php //$form = \yii\widgets\ActiveForm::begin([
-//            'action'=>['site/comment', 'id'=>$article->id],
-//            'options'=>['class'=>'form-horizontal contact-form', 'role'=>'form']])?>
-<!--        <div class="form-group">-->
-<!--            <div class="col-md-12">-->
-<!--                --><?//= $form->field($commentForm, 'comment')->textarea(['class'=>'form-control','placeholder'=>'Write Message'])->label(false)?>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#<?= $comment->id; ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Залишити коментарій
+            </a>
+
+            <?= Html::a('Delete', ['comment/delete', 'id' => $comment->id, 'article_id'=>$article->id ], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+
+<!--            <a class="btn btn-primary" data-toggle="collapse" href="#update--><?//= $comment->id; ?><!--" role="button" aria-expanded="false" aria-controls="collapseExample">-->
+<!--                Редагувати коментар-->
+<!--            </a>-->
+
+        </p>
+        <div class="collapse" id="<?= $comment->id; ?>">
+            <div class="card card-body">
+                <?php if(!Yii::$app->user->isGuest):?>
+                    <div class="leave-comment">
+                        <h4>Залиште ваш коментарій</h4>
+                        <?php if(Yii::$app->session->getFlash('comment')):?>
+                            <div class="alert alert-success" role="alert">
+                                <?= Yii::$app->session->getFlash('comment'); ?>
+                            </div>
+                        <?php endif;?>
+                        <?php $form = \yii\widgets\ActiveForm::begin([
+                            'action'=>['articles/article', 'id'=>$article->id,'comment_id' => $comment->id ],
+                            'options'=>['class'=>'form-horizontal contact-form', 'role'=>'form']])?>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <?= $form->field($commentForm, 'comment')->textarea(['class'=>'form-control','placeholder'=>'Write Message'])->label(false)?>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn send-btn">Post Comment</button>
+                        <?php \yii\widgets\ActiveForm::end();?>
+                    </div>
+                <?php endif;?>
+            </div>
+        </div>
+
+<!--        <div class="collapse" id="update--><?//= $comment->id; ?><!--">-->
+<!--            <div class="card card-body">-->
+<!--                --><?php //if(!Yii::$app->user->isGuest):?>
+<!--                    <div class="leave-comment">-->
+<!--                        <h4>Залиште ваш коментарій</h4>-->
+<!--                        --><?php //if(Yii::$app->session->getFlash('comment')):?>
+<!--                            <div class="alert alert-success" role="alert">-->
+<!--                                --><?//= Yii::$app->session->getFlash('comment'); ?>
+<!--                            </div>-->
+<!--                        --><?php //endif;?>
+<!--                        --><?php //$form = \yii\widgets\ActiveForm::begin([
+//                            'action'=>['comment/update', 'id'=>$comment->id ,'$article_id' => $article->id ],
+//                            'options'=>['class'=>'form-horizontal contact-form', 'role'=>'form']])?>
+<!--                        <div class="form-group">-->
+<!--                            <div class="col-md-12">-->
+<!--                                --><?//= $form->field($commentForm, 'comment')->textarea(['class'=>'form-control','placeholder'=>'Write Message'])->label(false)?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button type="submit" class="btn send-btn">Post Comment</button>-->
+<!--                        --><?php //\yii\widgets\ActiveForm::end();?>
+<!--                    </div>-->
+<!--                --><?php //endif;?>
 <!--            </div>-->
 <!--        </div>-->
-<!--        <button type="submit" class="btn send-btn">Post Comment</button>-->
-<!--        --><?php //\yii\widgets\ActiveForm::end();?>
-<!--    </div><!--end leave comment-->
-<?php //endif;?>
+
+
+       <?php $article->subComment($comment->id,$article->id); ?>
+    <?php endforeach;?>
+<?php endif;?>
