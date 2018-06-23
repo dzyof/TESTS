@@ -2,10 +2,12 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 use yii\data\Pagination;
+use yii\widgets\Pjax;
 
 
 $this->title = 'Test system'
@@ -47,3 +49,9 @@ $this->title = 'Test system'
 //    ]);
 //    ?>
 <!--</div>-->
+
+<?php Pjax::begin(['enablePushState' => false]); ?>
+<?= Html::a('', ['articles/upvote'], ['class' => 'btn btn-lg btn-warning glyphicon glyphicon-arrow-up']) ?>
+<?= Html::a('', ['articles/downvote'], ['class' => 'btn btn-lg btn-primary glyphicon glyphicon-arrow-down']) ?>
+<h1><?= Yii::$app->session->get('votes', 0) ?></h1>
+<?php Pjax::end(); ?>

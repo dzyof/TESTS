@@ -52,4 +52,26 @@ class ArticlesController extends Controller
 //            'comments_com'=>$comments_com
         ]);
     }
+
+    public function actionUpvote()
+    {
+        $model = Article::find()->orderBy('id DESC')->all();
+
+        $votes = Yii::$app->session->get('votes', 0);
+        Yii::$app->session->set('votes', ++$votes);
+        return $this->render('index',[
+            'model' => $model
+            ] );
+    }
+
+    public function actionDownvote()
+    {
+        $model = Article::find()->orderBy('id DESC')->all();
+
+        $votes = Yii::$app->session->get('votes', 0);
+        Yii::$app->session->set('votes', --$votes);
+        return $this->render('index',[
+            'model' => $model
+        ] );
+    }
 }

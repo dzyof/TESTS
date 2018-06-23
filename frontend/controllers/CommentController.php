@@ -110,6 +110,30 @@ class CommentController extends Controller
          return $this->redirect(['articles/article?id='. $article_id]);
     }
 
+//    public function actionLikeUp($id, $article_id = null)
+//    {
+//        $votes = Yii::$app->session->get('like');
+//
+//        var_dump($votes);
+//        $model = $this->findModel($id);
+//        $model->like += $votes;
+//        $model->save();
+//
+//        Yii::$app->session->set('votes', $model->like);
+//        return $this->redirect(['articles/article?id='. $article_id ]);
+//    }
+//
+//    public function actionLikeDown()
+//    {
+//        $votes = Yii::$app->session->get('votes', 0);
+//        Yii::$app->session->set('votes', --$votes);
+//        return $this->render('vote');
+//    }
+
+
+
+
+
 
     /**
      * Deletes an existing Comment model.
