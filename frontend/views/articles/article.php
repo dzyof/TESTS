@@ -60,6 +60,15 @@
                 ]) ?>
             <?php endif; ?>
 
+            <?= Html::a('Delete', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+
+
             <a class="btn btn-primary" data-toggle="collapse" href="#<?= $comment->id; ?>" role="button"
                aria-expanded="false" aria-controls="collapseExample">
                 Залишити коментарій

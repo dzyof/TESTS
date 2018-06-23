@@ -46,9 +46,9 @@ $this->title = 'Test system'
 //    ?>
 <!--</div>-->
 
-
-<?php Pjax::begin(['enablePushState' => false]); ?>
-<?= Html::a('', ['articles/upvote'], ['class' => 'btn btn-lg btn-warning glyphicon glyphicon-arrow-up']) ?>
-<?= Html::a('', ['articles/downvote'], ['class' => 'btn btn-lg btn-primary glyphicon glyphicon-arrow-down']) ?>
-<h1><?= Yii::$app->session->get('votes', 0) ?></h1>
-<?php Pjax::end(); ?>
+<!---->
+<?php //Pjax::begin(['enablePushState' => false]); ?>
+<?//= Html::a('', ['articles/upvote'], ['class' => 'btn btn-lg btn-warning glyphicon glyphicon-arrow-up']) ?>
+<?//= Html::a('', ['articles/downvote'], ['class' => 'btn btn-lg btn-primary glyphicon glyphicon-arrow-down']) ?>
+<!--<h1>--><?//= Yii::$app->session->get('votes', 0) ?><!--</h1>-->
+<?php //Pjax::end(); ?>
