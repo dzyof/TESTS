@@ -8,10 +8,7 @@ use yii\widgets\LinkPager;
 
 use yii\data\Pagination;
 use yii\widgets\Pjax;
-
-
 $this->title = 'Test system'
-
 ?>
 <div class="site-index">
     <div class="bs-example">
@@ -26,12 +23,11 @@ $this->title = 'Test system'
                 ?>
                 <tr>
                     <td>
-                        <a href="<?= Url::to(['articles/article', 'id'=> $article->id]) ?>">
+                        <a href="<?= Url::to(['articles/article', 'id' => $article->id]) ?>">
                             <?= $article->title ?>
                         </a>
                     </td>
                     <td> <?= $article->description ?></td>
-
                 </tr>
                 <?php
             }
@@ -49,6 +45,7 @@ $this->title = 'Test system'
 //    ]);
 //    ?>
 <!--</div>-->
+
 
 <?php Pjax::begin(['enablePushState' => false]); ?>
 <?= Html::a('', ['articles/upvote'], ['class' => 'btn btn-lg btn-warning glyphicon glyphicon-arrow-up']) ?>

@@ -85,6 +85,7 @@
             'commentForm' => $commentForm
         ]) ?>
 
-        <?php $article->subComment($comment->id, $article->id); ?>
+        <?php $article->subComment($comment->id,$commentForm,$article->id); ?>
+<!--        //, $article->id,$commentForm-->
     <?php endforeach; ?>
 <?php endif; ?>
