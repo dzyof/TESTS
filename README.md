@@ -17,8 +17,9 @@
         yii migrate - creates a base </br>
         yii migrate --migrationPath=@yii/rbac/migrations</br>
         yii fill/user - creates a user and admin </br>
+        yii fill/article-commment - creates test article and commment </br>
         yii rbac/init - creates a rools for access in admin panel </br>
-        
+       
         /admin  - enter in admin panel 
         
         login admin 
