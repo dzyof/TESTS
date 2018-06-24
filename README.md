@@ -19,4 +19,10 @@
         yii fill/user - creates a user and admin </br>
         yii rbac/init - creates a rools for access in admin panel </br>
         
-        /admin  - enter in admin panel       
+        /admin  - enter in admin panel 
+        
+        login admin 
+        password 1 
+<hr>        
+<b> System features     </b>
+
