@@ -6,6 +6,7 @@ use frontend\models\RezultOption;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\base\Security;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -277,4 +278,19 @@ class SiteController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionFormSubmission()
+    {
+        $string = Yii::$app->request->post('string');
+        $tests = Test::find()->all();
+
+        if (!is_null($string)) {
+            $stringHash = $string."Моя строка";
+        }
+        return $this->render('index', [
+            'stringHash' => $stringHash,
+            'tests' => $tests,
+        ]);
+    }
+
 }

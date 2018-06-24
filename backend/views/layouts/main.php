@@ -38,6 +38,8 @@ AppAsset::register($this);
     $menuItems = [
 //        ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Тести', 'url' => ['/tests/index']],
+        ['label' => 'Статти', 'url' => ['/articles/index']],
+        ['label' => 'Коментарі', 'url' => ['/comment/index']],
 //        ['label' => 'Question', 'url' => ['/qestion/index']],
 //        ['label' => 'Option', 'url' => ['/qestion-option/index']],
 

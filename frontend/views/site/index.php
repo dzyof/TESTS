@@ -2,7 +2,9 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 $this->title = 'Test system'
 
@@ -39,4 +41,33 @@ $this->title = 'Test system'
         </table>
     </div>
 
-</div>
+<!--    <div id="accordion">-->
+<!---->
+<!--        --><?php
+//        foreach ($tests as $test) {
+//            ?>
+<!--            <div class="group">-->
+<!--               <h3> --><?//= $test->name_tests ?><!-- Час для проходження тесту --><?//= $test->time_passing ?><!--хв. </h3>-->
+<!--                <div>-->
+<!--                    <a href="--><?//= Url::to(['site/test', 'id'=> $test->id]) ?><!--"> Розпочати тест</a>-->
+<!--                    <p> Тут може бути опис для кожного тесту</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            --><?php
+//        }
+//        ?>
+<!---->
+<!---->
+<!---->
+<!---->
+<!--</div>-->
+
+
+    <?php Pjax::begin(); ?>
+    <?= Html::beginForm(['site/form-submission'], 'post', ['data-pjax' => '', 'class' => 'form-inline']); ?>
+    <?= Html::input('text', 'string', Yii::$app->request->post('string'), ['class' => 'form-control']) ?>
+    <?= Html::submitButton('Получить хеш', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
+    <?= Html::endForm() ?>
+    <h3><?= $stringHash ?></h3>
+    <?php Pjax::end(); ?>

@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -17,8 +18,16 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
+
     <?= Html::csrfMetaTags() ?>
     <title>Система тестування</title>
     <?php $this->head() ?>
@@ -38,11 +47,17 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Доступні тести', 'url' => ['/site/index']],
         ['label' => 'Таблиця пройдених тестів', 'url' => ['/rezult/index']],
+
+        ['label' => 'Статті', 'url' => ['/articles/index']],
+
 //        ['label' => 'Питання', 'url' => ['/site/test']],
 //        ['label' => 'Варыант выдповіді', 'url' => ['/site/option']],
 //        ['label' => 'About', 'url' => ['/site/about']],
 //        ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
+
+
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Реєстрація', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Ввійти', 'url' => ['/site/login']];
@@ -55,6 +70,8 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+//        $menuItems[] = ['label' => 'Особистий кабінет', 'url' => ['/profile/index']];
+
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -62,6 +79,8 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+
+
 
     <div class="container">
         <?= Breadcrumbs::widget([

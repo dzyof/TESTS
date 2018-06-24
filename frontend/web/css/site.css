@@ -118,3 +118,25 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.comment-img img {
+    width: 100px;
+    height: 100px;
+}
+
+.sub-bottom-comment{
+    margin-left: 100px;
+}
+
+.comment-img,
+.comment-text {
+    background-color: gainsboro;
+    border: black;
+    border-radius: 20px;
+    padding-top: 10px;
+}
+
+.comment-img {
+    margin-top: 10px;
+}
+
