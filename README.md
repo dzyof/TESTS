@@ -26,3 +26,9 @@
 <hr>        
 <b> System features     </b>
 
+Creation of multilevel tests with the possibility of many options for answers.
+Create articles and fake comments for them.
+Creating articles
+Ability to pass tests for an hour
+Results table.
+Add tree-like comments to articles
