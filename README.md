@@ -23,6 +23,9 @@
         
         login admin 
         password 1 
+        
+        login user 
+        password 1 
 <hr>        
 <b> System features     </b></br>
 
