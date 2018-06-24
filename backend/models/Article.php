@@ -74,18 +74,30 @@ class Article extends \yii\db\ActiveRecord
                      <div class="comment-img">
                         <?= Html::img('@web/images/avatar.jpg', ['alt' => 'avatar']) ; ?>
                      </div>
-                     <h5> User  Name "Defoult" </h5>
+                    <h5> User  ID <?= $comm->user_id; ?> </h5>
                      <div class="comment-text">
                              <p class="para"> <?= $comm->text; ?></p>
                      </div>
+
+                    <p class="glyphicon glyphicon-heart"><?= $comm->like ?></p>
+
+                    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id != $comm->user_id): ?>
+                        <?= Html::a('Вподобати', ['comment/like', 'id' => $comm->id, 'article_id' => $article_id], [
+                            'class' => 'btn btn-info',
+                            'data' => [
+                                'method' => 'post',
+                            ],
+                        ]) ?>
+                    <?php endif; ?>
+
 <!--                    Кнопка і Форма в випадаючому меню коментаря Початок -->
                     <a class="btn btn-primary" data-toggle="collapse" href="#<?= $comm->id; ?>" role="button"
                        aria-expanded="false" aria-controls="collapseExample">
                         Залишити коментарій
                     </a>
-
+                    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == $comm->user_id): ?>
                     <!--                    Кнопка видалити коментар  START-->
-                    <?= Html::a('Delete', ['comment/delete', 'id' => $comm->id, 'article_id' => $article_id], [
+                    <?= Html::a('Видалити', ['comment/delete', 'id' => $comm->id, 'article_id' => $article_id], [
                         'class' => 'btn btn-danger',
                         'data' => [
                             'method' => 'post',
@@ -101,7 +113,7 @@ class Article extends \yii\db\ActiveRecord
                             'data-pjax'=>1
                         ],
                     ]) ?>
-
+                    <?php endif; ?>
                     <div class="collapse" id="<?=  $comm->id; ?>">
                         <div class="card card-body">
                             <?php if (!Yii::$app->user->isGuest): ?>

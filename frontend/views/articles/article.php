@@ -43,7 +43,7 @@ use yii\helpers\Html;
             </div>
             <div class="comment-text">
                 <!--                <h5> --><? //= $comment->user->name;?><!--</h5>-->
-                <h5> User  Name "Defoult" </h5>
+                <h5> User  ID <?= $comment->user_id; ?> </h5>
 <!--                // TODO change by user->name-->
 
                 <p class="para"><?= $comment->text; ?></p>
@@ -51,7 +51,7 @@ use yii\helpers\Html;
         </div>
         <p>
             <p>
-            <di><?= $comment->like ?></di>
+            <p class="glyphicon glyphicon-heart"><?= $comment->like ?></p>
 
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id != $comment->user_id): ?>
                 <?= Html::a('Вподобати', ['comment/like', 'id' => $comment->id, 'article_id' => $article->id], [
@@ -66,21 +66,22 @@ use yii\helpers\Html;
                aria-expanded="false" aria-controls="collapseExample">
                 Залишити коментарій
             </a>
-
-            <?= Html::a('Видалити', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'method' => 'post',
-                    'data-pjax'=>1
-                ],
-            ]) ?>
-            <?= Html::a('Редагувати', ['comment/update', 'id' => $comment->id ], [
-                'class' => 'btn btn-warning',
-                'data' => [
-                    'method' => 'post',
-                    'data-pjax'=>1
-                ],
-            ]) ?>
+            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == $comment->user_id): ?>
+                <?= Html::a('Видалити', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'method' => 'post',
+                        'data-pjax'=>1
+                    ],
+                ]) ?>
+                <?= Html::a('Редагувати', ['comment/update', 'id' => $comment->id ], [
+                    'class' => 'btn btn-warning',
+                    'data' => [
+                        'method' => 'post',
+                        'data-pjax'=>1
+                    ],
+                ]) ?>
+            <?php endif; ?>
         </p>
 
          <?= $this->render('_colapse-form',[
