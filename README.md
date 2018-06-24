@@ -24,11 +24,11 @@
         login admin 
         password 1 
 <hr>        
-<b> System features     </b>
+<b> System features     </b></br>
 
-Creation of multilevel tests with the possibility of many options for answers.
-Create articles and fake comments for them.
-Creating articles
-Ability to pass tests for an hour
-Results table.
-Add tree-like comments to articles
+Creation of multilevel tests with the possibility of many options for answers.</br>
+Create articles and fake comments for them.</br>
+Creating articles</br>
+Ability to pass tests for an hour</br>
+Results table.</br>
+Add tree-like comments to articles</br>
