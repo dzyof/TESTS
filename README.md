@@ -26,6 +26,7 @@
 <hr>        
 <b> System features     </b></br>
 
+Closed admin for users</br>
 Creation of multilevel tests with the possibility of many options for answers.</br>
 Create articles and fake comments for them.</br>
 Creating articles</br>
