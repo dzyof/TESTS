@@ -83,21 +83,17 @@ class CommentController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $article_id = null, $comment_text  = null )
+    public function actionUpdate($id)
     {
+        $model = $this->findModel($id);
 
-        if (Yii::$app->request->isPost) {
-            $commentForm = new CommentForm();
-
-            $commentForm->load(Yii::$app->request->post());
-            $commentForm->updateComment($id);
-            $this->refresh();
-//            if($commentForm->saveComment($id))
-//            {
-//                Yii::$app->getSession()->setFlash('comment', 'Ваш коментарь успішно додано');
-//            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['articles/article?id='. $model->article_id]);
         }
-        return $this->redirect(['articles/article?id='. $article_id]);
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
 

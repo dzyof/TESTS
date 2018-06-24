@@ -15,7 +15,7 @@
                 <?= $form->field($commentForm, 'comment')->textarea(['class' => 'form-control', 'placeholder' => 'Write Message'])->label(false) ?>
             </div>
         </div>
-        <button type="submit" class="btn send-btn">Post Comment</button>
+        <button type="submit" class="btn send-btn">Залишити коментар</button>
         <?php \yii\widgets\ActiveForm::end(); ?>
     </div>
 

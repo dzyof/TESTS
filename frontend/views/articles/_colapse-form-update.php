@@ -9,7 +9,7 @@
                     </div>
                 <?php endif;?>
                 <?php $form = \yii\widgets\ActiveForm::begin([
-                    'action'=>['comment/update', 'id'=>$comment_id ,'$article_id' => $article_id ],
+                    'action'=>['comment/update', 'id'=>$comment_id,'commentForm' => $commentForm  ],
                     'options'=>['class'=>'form-horizontal contact-form', 'role'=>'form']])?>
                 <div class="form-group">
                     <div class="col-md-12">

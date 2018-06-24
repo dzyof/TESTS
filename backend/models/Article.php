@@ -84,6 +84,24 @@ class Article extends \yii\db\ActiveRecord
                         Залишити коментарій
                     </a>
 
+                    <!--                    Кнопка видалити коментар  START-->
+                    <?= Html::a('Delete', ['comment/delete', 'id' => $comm->id, 'article_id' => $article_id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'method' => 'post',
+                            'data-pjax'=>1
+                        ],
+                    ]) ?>
+                    <!--                           Кнопка видалити коментар END-->
+
+                    <?= Html::a('Редагувати', ['comment/update', 'id' =>$comm->id ], [
+                        'class' => 'btn btn-warning',
+                        'data' => [
+                            'method' => 'post',
+                            'data-pjax'=>1
+                        ],
+                    ]) ?>
+
                     <div class="collapse" id="<?=  $comm->id; ?>">
                         <div class="card card-body">
                             <?php if (!Yii::$app->user->isGuest): ?>
@@ -111,15 +129,7 @@ class Article extends \yii\db\ActiveRecord
 
 <!--                    Кнопка і Форма в випадаючому меню коментаря Ksytwm -->
 
-<!--                    Кнопка видалити коментар  START-->
-                    <?= Html::a('Delete', ['comment/delete', 'id' => $comm->id, 'article_id' => $article_id], [
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                            'method' => 'post',
-                            'data-pjax'=>1
-                        ],
-                    ]) ?>
-<!--                           Кнопка видалити коментар END-->
+
 
                       <?= $this->subComment($comm->id,$commentForm,$article_id);?>
                 </div>
