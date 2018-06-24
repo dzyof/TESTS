@@ -55,10 +55,9 @@ use yii\helpers\Html;
 
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id != $comment->user_id): ?>
                 <?= Html::a('Вподобати', ['comment/like', 'id' => $comment->id, 'article_id' => $article->id], [
-                    'class' => 'btn btn-danger',
+                    'class' => 'btn btn-info',
                     'data' => [
-                        'confirm' => 'Are you sure you want to delete this item?',
-                        'method' => 'post',
+                       'method' => 'post',
                     ],
                 ]) ?>
             <?php endif; ?>
@@ -68,20 +67,20 @@ use yii\helpers\Html;
                 Залишити коментарій
             </a>
 
-            <?= Html::a('Delete', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
+            <?= Html::a('Видалити', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
                     'method' => 'post',
                     'data-pjax'=>1
                 ],
             ]) ?>
-
-<!--            виправити кнопку редагувати-->
-
-<!--            <a class="btn btn-primary" data-toggle="collapse" href="#update--><?//= $comment->id; ?><!--" role="button"-->
-<!--               aria-expanded="false" aria-controls="collapseExample">-->
-<!--                Редагувати-->
-<!--            </a>-->
+            <?= Html::a('Редагувати', ['comment/update', 'id' => $comment->id ], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'method' => 'post',
+                    'data-pjax'=>1
+                ],
+            ]) ?>
         </p>
 
          <?= $this->render('_colapse-form',[
@@ -89,7 +88,6 @@ use yii\helpers\Html;
             'article_id' => $article->id,
             'commentForm' => $commentForm
         ]) ?>
-
         <?= $this->render('_colapse-form-update',[
             'comment_id' => $comment->id,
             'article_id' => $article->id,

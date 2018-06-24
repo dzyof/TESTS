@@ -25,7 +25,7 @@ class CommentForm extends Model
         $comment->text = $this->comment;
         $comment->user_id = Yii::$app->user->id;
         $comment->article_id = $article_id;
-        $comment->comment_id = $comment_id ;// савити ід коментаря
+        $comment->comment_id = $comment_id ;// ставити ід коментаря
         $comment->status = 0;
         return $comment->save();
     }
