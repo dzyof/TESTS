@@ -110,6 +110,17 @@ class Article extends \yii\db\ActiveRecord
                     </div>
 
 <!--                    Кнопка і Форма в випадаючому меню коментаря Ksytwm -->
+
+<!--                    Кнопка видалити коментар  START-->
+                    <?= Html::a('Delete', ['comment/delete', 'id' => $comm->id, 'article_id' => $article_id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'method' => 'post',
+                            'data-pjax'=>1
+                        ],
+                    ]) ?>
+<!--                           Кнопка видалити коментар END-->
+
                       <?= $this->subComment($comm->id,$commentForm,$article_id);?>
                 </div>
                <?php  endif;

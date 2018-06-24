@@ -144,9 +144,8 @@ class CommentController extends Controller
      */
     public function actionDelete($id, $article_id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['articles/article?id='. $article_id]);
+            $this->findModel($id)->delete();
+            return $this->redirect(['articles/article?id='. $article_id]);
     }
 
     /**

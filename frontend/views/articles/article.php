@@ -1,8 +1,10 @@
 <?php
-    use yii\helpers\Html;
+
+use yii\grid\GridView;
+use yii\helpers\Html;
     use yii\widgets\Pjax;
 ?>
-
+<?php \yii\widgets\Pjax::begin(); ?>
 <div class="site-index">
     <div class="bs-example">
         <table class="table table-striped">
@@ -50,6 +52,7 @@
         <p>
             <p>
             <di><?= $comment->like ?></di>
+
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id != $comment->user_id): ?>
                 <?= Html::a('Вподобати', ['comment/like', 'id' => $comment->id, 'article_id' => $article->id], [
                     'class' => 'btn btn-danger',
@@ -60,19 +63,18 @@
                 ]) ?>
             <?php endif; ?>
 
-            <?= Html::a('Delete', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-
-
             <a class="btn btn-primary" data-toggle="collapse" href="#<?= $comment->id; ?>" role="button"
                aria-expanded="false" aria-controls="collapseExample">
                 Залишити коментарій
             </a>
+
+            <?= Html::a('Delete', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'method' => 'post',
+                    'data-pjax'=>1
+                ],
+            ]) ?>
 
 <!--            виправити кнопку редагувати-->
 
@@ -98,3 +100,5 @@
 <!--        //, $article->id,$commentForm-->
     <?php endforeach; ?>
 <?php endif; ?>
+
+<?php  \yii\widgets\Pjax::end();?>
