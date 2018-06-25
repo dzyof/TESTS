@@ -59,6 +59,7 @@ use yii\helpers\Html;
                     'data' => [
                        'method' => 'post',
                     ],
+
                 ]) ?>
             <?php endif; ?>
 
