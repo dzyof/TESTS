@@ -70,6 +70,7 @@ class Article extends \yii\db\ActiveRecord
         if ($comments_com):
             foreach($comments_com as $comm):
                 if(($comments_id == $comm->comment_id )):?>
+
                 <div class="sub-bottom-comment ">
                      <div class="comment-img">
                         <?= Html::img('@web/images/avatar.jpg', ['alt' => 'avatar']) ; ?>
@@ -126,7 +127,7 @@ class Article extends \yii\db\ActiveRecord
                                     <?php endif; ?>
                                     <?php $form = \yii\widgets\ActiveForm::begin([
                                         'action' => ['articles/article', 'id' => $article_id, 'comment_id' =>  $comm->id],
-                                        'options' => ['class' => 'form-horizontal contact-form', 'role' => 'form']]) ?>
+                                        'options' => ['class' => 'form-horizontal contact-form', 'role' => 'form','data-pjax' => true]]) ?>
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <?= $form->field($commentForm, 'comment')->textarea(['class' => 'form-control', 'placeholder' => 'Write Message'])->label(false) ?>
@@ -145,6 +146,7 @@ class Article extends \yii\db\ActiveRecord
 
                       <?= $this->subComment($comm->id,$commentForm,$article_id);?>
                 </div>
+
                <?php  endif;
             endforeach;
         endif;

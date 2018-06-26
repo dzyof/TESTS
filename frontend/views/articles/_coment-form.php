@@ -9,7 +9,7 @@
         <?php endif; ?>
         <?php $form = \yii\widgets\ActiveForm::begin([
             'action' => ['articles/article', 'id' => $article_id ],
-            'options' => ['class' => 'form-horizontal contact-form', 'role' => 'form']]) ?>
+            'options' => ['class' => 'form-horizontal contact-form', 'role' => 'form','data-pjax' => true]]) ?>
         <div class="form-group">
             <div class="col-md-12">
                 <?= $form->field($commentForm, 'comment')->textarea(['class' => 'form-control', 'placeholder' => 'Write Message'])->label(false) ?>
