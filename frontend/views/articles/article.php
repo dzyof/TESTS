@@ -70,16 +70,17 @@ use yii\helpers\Html;
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == $comment->user_id): ?>
                 <?= Html::a('Видалити', ['comment/delete', 'id' => $comment->id, 'article_id' => $article->id], [
                     'class' => 'btn btn-danger',
+//                    'option' =>[
+//                        'data-pjax' => true
+//                    ],
+
                     'data' => [
                         'method' => 'post',
-                        'data-pjax'=>1
-                    ],
-                ]) ?>
+                ]]) ?>
                 <?= Html::a('Редагувати', ['comment/update', 'id' => $comment->id ], [
                     'class' => 'btn btn-warning',
                     'data' => [
                         'method' => 'post',
-                        'data-pjax'=>1
                     ],
                 ]) ?>
             <?php endif; ?>
