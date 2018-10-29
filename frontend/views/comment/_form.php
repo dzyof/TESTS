@@ -10,6 +10,8 @@ use yii\widgets\ActiveForm;
 
 <div class="comment-form">
 
+
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'text')->textarea(['maxlength' => true]) ?>
@@ -19,5 +21,8 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
+
+
+
 
 </div>

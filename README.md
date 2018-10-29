@@ -23,7 +23,7 @@
         /admin  - enter in admin panel 
         
         login admin 
-        password 1 
+        password 123
         
         login user 
         password 1 

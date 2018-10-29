@@ -68,10 +68,12 @@ class Article extends \yii\db\ActiveRecord
     public function subComment($comments_id ,$commentForm,$article_id){
         $comments_com = Comment::find()->all();
         if ($comments_com):
+
             foreach($comments_com as $comm):
-                if(($comments_id == $comm->comment_id )):?>
+                if(($comments_id == $comm->comment_id && $comm->approved )):?>
 
                 <div class="sub-bottom-comment ">
+                    <?php  if($comm->status){ echo '<p>Редаговано адміністратором</p>';  }  ?>
                      <div class="comment-img">
                         <?= Html::img('@web/images/avatar.jpg', ['alt' => 'avatar']) ; ?>
                      </div>

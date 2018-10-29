@@ -37,10 +37,17 @@ use yii\helpers\Html;
 
 <?php if (!empty($comments)): ?>
     <?php foreach ($comments as $comment): ?>
+        <?php if( $comment->approved){ ?>
+
+
         <div class="bottom-comment"><!--bottom comment-->
+            <?php  if($comment->status){ echo '<p>Редаговано адміністратором</p>';  }  ?>
             <div class="comment-img">
+
                 <?= Html::img('@web/images/avatar.jpg', ['alt' => 'avatar']) ?>
+
             </div>
+
             <div class="comment-text">
                 <!--                <h5> --><? //= $comment->user->name;?><!--</h5>-->
                 <h5> User  ID <?= $comment->user_id; ?> </h5>
@@ -86,6 +93,7 @@ use yii\helpers\Html;
             <?php endif; ?>
         </p>
 
+
          <?= $this->render('_colapse-form',[
             'comment_id' => $comment->id,
             'article_id' => $article->id,
@@ -97,8 +105,11 @@ use yii\helpers\Html;
             'commentForm' => $commentForm
         ]) ?>
 
+
         <?php $article->subComment($comment->id,$commentForm,$article->id); ?>
 <!--        //, $article->id,$commentForm-->
+
+        <?php }?>
     <?php endforeach; ?>
 <?php endif; ?>
 

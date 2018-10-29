@@ -20,7 +20,7 @@ class FillController extends \yii\console\Controller
         $user->id = 1;
         $user->username = 'admin';
         $user->email = 'admin@gmail.com';
-        $user->setPassword(1);
+        $user->setPassword(123);
         $user->generateAuthKey();
         $user->save();
 

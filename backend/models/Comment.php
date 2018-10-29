@@ -1,7 +1,7 @@
 <?php
 
 namespace backend\models;
-
+use yii\web\UploadedFile;
 use Yii;
 
 /**
@@ -16,6 +16,9 @@ use Yii;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+    public $imageFile;
+    public $imagename;
+
     /**
      * @inheritdoc
      */
@@ -30,8 +33,9 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'article_id', 'comment_id', 'status'], 'integer'],
-            [['text'], 'string', 'max' => 255],
+            [['user_id', 'article_id', 'comment_id','approved', 'status'], 'integer'],
+            [['text','imagename'], 'string', 'max' => 255],
+            [['imageFile'], 'file', 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -46,7 +50,11 @@ class Comment extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'article_id' => 'Article ID',
             'comment_id' => 'Comment ID',
+            'approved' => 'Approved',
+            'imagename' =>'imagename',
+            'imageFile' => 'Image',
             'status' => 'Status',
         ];
     }
+
 }
