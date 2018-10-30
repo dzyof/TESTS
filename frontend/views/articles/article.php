@@ -38,8 +38,6 @@ use yii\helpers\Html;
 <?php if (!empty($comments)): ?>
     <?php foreach ($comments as $comment): ?>
         <?php if( $comment->approved){ ?>
-
-
         <div class="bottom-comment"><!--bottom comment-->
             <?php  if($comment->status){ echo '<p>Редаговано адміністратором</p>';  }  ?>
             <div class="comment-img">

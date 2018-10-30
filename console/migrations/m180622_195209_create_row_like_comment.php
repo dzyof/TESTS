@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m180622_194401_create_row_like_comment
+ * Class m180622_195209_create_row_like_comment
  */
-class m180622_194401_create_row_like_comment extends Migration
+class m180622_195209_create_row_like_comment extends Migration
 {
     /**
      * @inheritdoc

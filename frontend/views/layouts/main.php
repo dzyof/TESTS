@@ -49,6 +49,8 @@ AppAsset::register($this);
         ['label' => 'Таблиця пройдених тестів', 'url' => ['/rezult/index']],
 
         ['label' => 'Статті', 'url' => ['/articles/index']],
+        ['label' => 'Загрузка', 'url' => ['/site/upload']],
+
 
 //        ['label' => 'Питання', 'url' => ['/site/test']],
 //        ['label' => 'Варыант выдповіді', 'url' => ['/site/option']],

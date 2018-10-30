@@ -22,7 +22,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'approved')->textInput() ?>
 
-    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
 <!--    --><?//= $form->field($model, 'status')->textInput() ?>
 

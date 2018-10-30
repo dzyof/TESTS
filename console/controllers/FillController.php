@@ -57,6 +57,7 @@ class FillController extends \yii\console\Controller
         $comment->article_id = 1;
         $comment->comment_id = null;
         $comment->like = 5;
+        $comment->approved = 1;
         $comment->user_id = 1;
         $comment->save();
 
@@ -68,6 +69,8 @@ class FillController extends \yii\console\Controller
         $comment->article_id = 1;
         $comment->comment_id = 1;
         $comment->like = 20;
+        $comment->approved = 1;
+        $comment->status = 1;
         $comment->user_id = 1;
         $comment->save();
 
@@ -78,6 +81,7 @@ class FillController extends \yii\console\Controller
         $comment->article_id = 1;
         $comment->comment_id = 2;
         $comment->like = 2;
+        $comment->approved = 1;
         $comment->user_id = 1;
         $comment->save();
 
@@ -88,6 +92,8 @@ class FillController extends \yii\console\Controller
         $comment->article_id = 1;
         $comment->comment_id = null;
         $comment->like = 2;
+        $comment->approved = 1;
+        $comment->status = 1;
         $comment->user_id = 2;
         $comment->save();
 

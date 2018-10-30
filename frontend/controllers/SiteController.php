@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use app\models\UploadForm;
+
 use frontend\models\Rezult;
 use frontend\models\RezultOption;
 
@@ -25,6 +27,7 @@ use backend\models\QuestionOption;
 use backend\models\MyModel as Model;
 
 use backend\models\TestSearch as PersonQuery;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -291,6 +294,21 @@ class SiteController extends Controller
             'stringHash' => $stringHash,
             'tests' => $tests,
         ]);
+    }
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return $this->render('upload', ['model' => $model]);
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
     }
 
 }

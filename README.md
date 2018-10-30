@@ -34,6 +34,7 @@ Closed admin for users</br>
 Creation of multilevel tests with the possibility of many options for answers.</br>
 Create articles and fake comments for them.</br>
 Creating articles</br>
+full admin control over comments<br>
 Ability to pass tests for an hour</br>
 Results table.</br>
 Add tree-like comments to articles</br>
